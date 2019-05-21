@@ -1,4 +1,4 @@
-package comgithub.kyrenesjtv.stepbystep.demodatadesignandarithmetic.string.kpm;
+package comgithub.kyrenesjtv.stepbystep.demodatadesignandarithmetic.dataStructure.string.kpm;
 
 /**
  * @ProjectName: stepByStep
