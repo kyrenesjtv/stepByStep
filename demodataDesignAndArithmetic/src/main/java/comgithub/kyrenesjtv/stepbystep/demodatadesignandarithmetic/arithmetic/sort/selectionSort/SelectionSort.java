@@ -34,10 +34,4 @@ public class SelectionSort {
         }
     }
 
-    public static void main(String[] args) {
-        int[] sort = new int[]{4,5,6,3,2,1};
-        SelectionSort(sort,6);
-        System.out.println("1111");
-    }
-
 }
