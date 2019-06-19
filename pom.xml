@@ -7,6 +7,10 @@
     <groupId>com.github.kyrenesjtv.stepByStep</groupId>
     <artifactId>stepByStep</artifactId>
     <version>1.0-SNAPSHOT</version>
-
+    <modules>
+        <module>leetcode</module>
+        <module>jdk8</module>
+        <module>demodataDesignAndArithmetic</module>
+    </modules>
 
 </project>
