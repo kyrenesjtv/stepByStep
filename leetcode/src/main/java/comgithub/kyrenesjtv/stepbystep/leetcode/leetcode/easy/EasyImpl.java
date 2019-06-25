@@ -40,7 +40,49 @@ public class EasyImpl implements Easy {
 
     }
 
+    @Override
+    public int reverse(int x) {
 
+        //第一种方法：利用字符串的翻转来做
+        /**Boolean isNegative = false;
+        //判断是否是负数
+        if(x < 0 ){
+            x=0-x;
+            isNegative = true;
+        }
+        StringBuilder reverse = new StringBuilder(String.valueOf(x)).reverse();
+
+        int i = Integer.parseInt(reverse.toString());
+        if(isNegative){
+            i=0-i;
+            if(i < Integer.MIN_VALUE){
+                return 0;
+            }
+
+        }else {
+            if( i > Integer.MAX_VALUE){
+                return 0 ;
+            }
+        }
+        return i;*/
+
+        //第二种方案 通过取余的方式
+        int temp = 0;
+        while(x!=0){
+            int remove = x%10;
+            x = x/10;
+            //最后一次的时候  MAX_VALUE = 2147483647  MIN_VALUE = -2147483648
+            if((temp > Integer.MAX_VALUE/10)||(temp == Integer.MAX_VALUE/10 && remove == 7)){
+                return 0;
+            }
+            if((temp < Integer.MIN_VALUE/10)||(temp == Integer.MIN_VALUE/10 && remove == -8)){
+                return 0;
+            }
+            temp = temp * 10 + remove;
+        }
+
+        return temp;
+    }
 
 
 }
