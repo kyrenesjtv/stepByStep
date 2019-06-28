@@ -2,6 +2,8 @@ package comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.easy;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Stack;
+import java.util.Vector;
 
 /**
  * @ProjectName: stepByStep
@@ -82,6 +84,39 @@ public class EasyImpl implements Easy {
         }
 
         return temp;
+    }
+
+    @Override
+    public boolean isPalindrome(int x) {
+
+        //第一种：利用string的反转
+        /**
+         if(x < 0 ){
+            return false;
+         }
+         if(String.valueOf(x).equals(new StringBuilder(String.valueOf(x)).reverse().toString())){
+            return true;
+        }else {
+            return false;
+        }*/
+
+        //第二种：利用取余
+        if(x < 0 ){
+            return false;
+        }
+        if(x == 0 || x/2 == 0){
+            return true;
+        }
+        int temp = 0;
+        while(x != 0 ){
+            int temp1 = x%10;
+            temp = temp*10 + temp1;
+            x=x/10;
+            if(x == temp || x == temp/10){
+                return true;
+            }
+        }
+        return false;
     }
 
 
