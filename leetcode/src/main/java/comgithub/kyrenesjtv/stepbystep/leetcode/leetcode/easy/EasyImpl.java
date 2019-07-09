@@ -119,5 +119,38 @@ public class EasyImpl implements Easy {
         return false;
     }
 
+    @Override
+    public int romanToInt(String s) {
+
+        //第一种： 遍历  右边的比左边的小为减，反之为加
+        Map<Character, Integer> paramMap = new HashMap<>();
+        paramMap.put('I',1);
+        paramMap.put('V',5);
+        paramMap.put('X',10);
+        paramMap.put('L',50);
+        paramMap.put('C',100);
+        paramMap.put('D',500);
+        paramMap.put('M',1000);
+        char[] chars = s.toCharArray();
+        Integer preInt = 0;
+        Integer currInt = 0;
+        Integer total = 0;
+        //判断上一次是否是相减的 true 相减 false 相加
+        Boolean temp = false;
+        for(int i = chars.length-1 ; i>=0 ; i--){
+            //转成String
+            Character key = chars[i];
+            currInt = paramMap.get(key);
+            if(currInt>preInt || ( currInt==preInt && temp==false)){
+                total += paramMap.get(key);
+            }else if(currInt<preInt ||( currInt==preInt && temp==true) ){
+                total -= paramMap.get(key);
+                temp=true;
+            }
+            preInt = paramMap.get(key);
+        }
+        return total;
+    }
+
 
 }

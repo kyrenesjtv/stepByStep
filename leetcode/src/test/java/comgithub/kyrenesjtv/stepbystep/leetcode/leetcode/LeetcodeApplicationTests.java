@@ -26,9 +26,9 @@ public class LeetcodeApplicationTests {
 //        int aa = 1234 %10;
 //        System.out.println(aa);
 
-        EasyImpl easy = new EasyImpl();
-        boolean palindrome = easy.isPalindrome(123321);
-        System.out.println("11");
+//        EasyImpl easy = new EasyImpl();
+//        boolean palindrome = easy.isPalindrome(123321);
+//        System.out.println("11");
 
 //        List<Map<String, Object>> list = new ArrayList<>();
 //
@@ -65,6 +65,58 @@ public class LeetcodeApplicationTests {
 //
 //        System.out.println("111");
 //
+
     }
+    @Test
+    public void test01() {
+
+        List<Map<String, Object>> paramList1 = new ArrayList<>();
+
+        List<Map<String, Object>> paramList2 = new ArrayList<>();
+
+        List<Map<String, Object>> paramList3 = new ArrayList<>();
+
+        Map<String, Object> map1 = new HashMap<>();
+        map1.put("text","雪亮工程社会治安综合治理信息平台");
+        map1.put("children",paramList2);
+
+        Map<String, Object> map2 = new HashMap<>();
+        map2.put("text","通用字典");
+        map2.put("children",paramList3);
+        paramList2.add(map2);
+
+        Map<String, Object> map3 = new HashMap<>();
+        map3.put("text","男");
+        paramList3.add(map3);
+        Map<String, Object> map4 = new HashMap<>();
+        map4.put("text","女");
+        paramList3.add(map4);
+
+        recursionTree(map1);
+
+        System.out.println("1111");
+
+    }
+
+    public static void recursionTree(Map<String,Object> map ){
+        if(!map.containsKey("children")){
+            map.put("icon","jstree-file");
+        }else {
+            List<Map<String, Object>> children = (List<Map<String, Object>>) map.get("children");
+            for(int i = 0 ; i < children.size();i++){
+                recursionTree(children.get(i));
+            }
+        }
+
+    }
+
+    @Test
+    public  void romanToInt( ){
+        EasyImpl easy = new EasyImpl();
+        int iii = easy.romanToInt("MCMXCIV");
+        System.out.println("111");
+    }
+
+
 
 }
