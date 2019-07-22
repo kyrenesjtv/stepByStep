@@ -152,5 +152,93 @@ public class EasyImpl implements Easy {
         return total;
     }
 
+    @Override
+    public String longestCommonPrefix(String[] strs) {
+
+        //第一种：横向循环，直接取出索引0的str
+        /**if(strs.length == 0){
+            return "";
+        }
+        String temp = strs[0];
+        for(int i = 1; i<strs.length;i++){
+            while(strs[i].indexOf(temp) != 0 ){
+                temp = temp.substring(0,temp.length()-1);
+            }
+            //有随机两个不匹配就全部不匹配
+            if(temp.isEmpty()){
+                return "";
+            }
+        }
+        return temp;*/
+
+        //第二种：横向循环， 取出长度最短的str
+        /**if(strs.length == 0){
+            return "";
+        }
+        String temp = strs[0];
+        for(int i = 1; i<strs.length;i++){
+            if(strs[i].length()<temp.length()){
+                temp = strs[i];
+            }
+        }
+        for(int i = 1; i<strs.length;i++){
+            while(strs[i].indexOf(temp) != 0 ){
+                temp = temp.substring(0,temp.length()-1);
+            }
+            //有随机两个不匹配就全部不匹配
+            if(temp.isEmpty()){
+                return "";
+            }
+        }
+        return temp;*/
+
+        //第三种：比较同一索引的字符
+        /**if(strs.length == 0){
+            return "";
+        }
+        for(int i =0 ; i < strs[0].length();i++){
+            char c  = strs[0].charAt(i);
+            for(int j = 1 ; j<strs.length;j++){
+                //判断strs[j]的长度
+                if(strs[j].length() == i ||strs[j].charAt(i)!=c){
+                    return strs[0].substring(0,i);
+                }
+            }
+        }
+        //这个return 是strs[0]是最短的
+        return strs[0];*/
+
+        //第四种：分治
+        if(strs.length == 0){
+            return "";
+        }
+        if(strs.length == 1){
+            return strs[0];
+        }
+
+        return longestCommonPrefix(strs,0,strs.length-1);
+    }
+    private String longestCommonPrefix(String[] strs, int l, int r) {
+        if(l==r){
+            return strs[l];
+        }else {
+            int mid = (l+r)/2;
+            String leftString = longestCommonPrefix(strs,l,mid);
+            String rightString = longestCommonPrefix(strs,mid+1,r);
+            return compareString(leftString,rightString);
+        }
+
+    }
+    private String compareString(String leftString, String rightString) {
+        int min = Math.min(leftString.length(),rightString.length());
+
+        for(int i = 0 ; i<min;i++){
+            if(leftString.charAt(i) != rightString.charAt(i)){
+                return leftString.substring(0,i);
+            }
+        }
+        return leftString.substring(0,min);
+    }
+
 
 }

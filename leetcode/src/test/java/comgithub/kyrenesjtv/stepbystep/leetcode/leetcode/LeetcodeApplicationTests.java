@@ -117,6 +117,23 @@ public class LeetcodeApplicationTests {
         System.out.println("111");
     }
 
+    @Test
+    public  void longestCommonPrefix( ){
+        String aa = "qwertyui";
+        String bb = "qwert";
+        String cc = "dsds";
+//        while (bb.indexOf(aa) != 0) {
+//            aa = aa.substring(0, aa.length() - 1);
+//        }
+        System.out.println(bb.indexOf(aa));//-1
+        System.out.println(aa.indexOf(bb));//0 aa里面有bb的 , 并且从索引0开始
+        System.out.println(cc.indexOf(bb));//-1
+
+        EasyImpl easy = new EasyImpl();
+        String s = easy.longestCommonPrefix(new String[]{"qwertyu", "qwe", "qwer"});
+        System.out.println(s);
+
+    }
 
 
 }

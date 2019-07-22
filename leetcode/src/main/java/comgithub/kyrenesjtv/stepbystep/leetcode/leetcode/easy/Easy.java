@@ -8,7 +8,7 @@ package comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.easy;
 public interface Easy {
 
     /**
-     * 两数之和
+     * 1:两数之和
      *
      * 给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。
      *
@@ -21,7 +21,7 @@ public interface Easy {
 
 
     /**
-     * 整数反转
+     * 7:整数反转
      *
      * 给出一个 32 位的有符号整数，你需要将这个整数中每位上的数字进行反转。
      *
@@ -33,7 +33,7 @@ public interface Easy {
     int reverse(int x);
 
     /**
-     * 回文数
+     * 9:回文数
      *
      * 判断一个整数是否是回文数。回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。
      *
@@ -43,7 +43,7 @@ public interface Easy {
     boolean isPalindrome(int x);
 
     /**
-     * 罗马数字转整数
+     * 13:罗马数字转整数
      *
      * 罗马数字包含以下七种字符: I， V， X， L，C，D 和 M。
      *
@@ -70,5 +70,20 @@ public interface Easy {
      * @return
      */
     int romanToInt(String s);
+
+
+    /**
+     * 14:最长公共前缀
+     *
+     * 编写一个函数来查找字符串数组中的最长公共前缀。
+     *
+     * 如果不存在公共前缀，返回空字符串 ""。
+     *
+     * 所有输入只包含小写字母 a-z
+     *
+     * @param strs
+     * @return
+     */
+    String longestCommonPrefix(String[] strs);
 
 }
