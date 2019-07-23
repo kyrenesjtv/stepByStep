@@ -218,6 +218,7 @@ public class EasyImpl implements Easy {
 
         return longestCommonPrefix(strs,0,strs.length-1);
     }
+
     private String longestCommonPrefix(String[] strs, int l, int r) {
         if(l==r){
             return strs[l];
@@ -238,6 +239,42 @@ public class EasyImpl implements Easy {
             }
         }
         return leftString.substring(0,min);
+    }
+
+
+    @Override
+    public boolean isValid(String s) {
+
+        //第一种：利用栈
+        if(s.equals("")){
+            return true;
+        }
+        //组装一个map 反的是用来取值， 这样子就能不能判断stack最新的一个是否是对应的括号
+        Map<Character, Character> paramMap = new HashMap<>();
+        paramMap.put(')','(');
+        paramMap.put(']','[');
+        paramMap.put('}','{');
+
+        Stack<Character> paramStack = new Stack<>();
+        for(int i=0;i<s.length();i++){
+            char c = s.charAt(i);
+            //这样子就能判断stack里面是否有对应的括号 ( [ {
+            if(paramMap.containsKey(c)){
+                //去stack里面 拿出最上面一个数据
+                if(paramStack.isEmpty()){
+                    return false;
+                }else {
+                    Character pop = paramStack.pop();
+                    if(pop!=paramMap.get(c)){
+                        return false;
+                    }
+                }
+            }else {
+                paramStack.add(c);
+            }
+        }
+        //全部循环完毕了， 为空就是符合规则的字符串
+        return paramStack.empty();
     }
 
 

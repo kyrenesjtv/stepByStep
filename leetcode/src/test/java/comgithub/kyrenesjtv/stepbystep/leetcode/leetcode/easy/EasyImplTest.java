@@ -33,4 +33,13 @@ public class EasyImplTest {
         String s = easy.longestCommonPrefix(new String[]{"qwertyu", "qwe", "qwer"});
         System.out.println(s);
     }
+
+    @Test
+    public void isValid() {
+        String sss = "((()(())))";
+        EasyImpl easy = new EasyImpl();
+        boolean valid = easy.isValid(sss);
+        System.out.println(valid);
+    }
+
 }
