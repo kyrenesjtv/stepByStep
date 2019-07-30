@@ -1,6 +1,9 @@
 package comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.easy;
 
+import comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.bean.ListNode;
 import org.junit.Test;
+
+import java.util.Random;
 
 import static org.junit.Assert.*;
 
@@ -41,5 +44,28 @@ public class EasyImplTest {
         boolean valid = easy.isValid(sss);
         System.out.println(valid);
     }
+
+    @Test
+    public void mergeTwoLists() {
+        ListNode listNode1 = new ListNode(1);
+        ListNode listNode2 = new ListNode(2);
+        ListNode listNode4 = new ListNode(4);
+
+        ListNode listNode5 = new ListNode(1);
+        ListNode listNode6 = new ListNode(3);
+        ListNode listNode7 = new ListNode(4);
+
+        listNode1.next=listNode2;
+        listNode2.next=listNode4;
+
+        listNode5.next=listNode6;
+        listNode6.next=listNode7;
+
+        EasyImpl easy = new EasyImpl();
+        ListNode listNode = easy.mergeTwoLists(listNode1, listNode5);
+        System.out.println("1111");
+
+    }
+
 
 }

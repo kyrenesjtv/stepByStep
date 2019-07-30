@@ -1,5 +1,7 @@
 package comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.easy;
 
+import comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.bean.ListNode;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
@@ -276,6 +278,35 @@ public class EasyImpl implements Easy {
         //全部循环完毕了， 为空就是符合规则的字符串
         return paramStack.empty();
     }
+
+
+    @Override
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+
+        //第一种方法：while
+       if(l1==null){
+            return l2;
+        }
+        if(l2==null){
+            return l1;
+        }
+        ListNode head = new ListNode(Integer.MAX_VALUE);
+        //防止head被替换
+        ListNode pre=head;
+        while(l1 != null && l2 != null){
+            if(l1.val<=l2.val){
+                pre.next=l1;
+                l1=l1.next;
+            }else {
+                pre.next=l2;
+                l2=l2.next;
+            }
+            pre=pre.next;
+        }
+        pre.next=l1==null?l2:l1;
+        return head.next;
+    }
+
 
 
 }
