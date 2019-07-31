@@ -67,5 +67,13 @@ public class EasyImplTest {
 
     }
 
+    @Test
+    public void removeDuplicates() {
+        int[] mums = new int[]{1,1,1,2};
+        EasyImpl easy = new EasyImpl();
+        int i = easy.removeDuplicates(mums);
+        System.out.println("111");
+    }
+
 
 }

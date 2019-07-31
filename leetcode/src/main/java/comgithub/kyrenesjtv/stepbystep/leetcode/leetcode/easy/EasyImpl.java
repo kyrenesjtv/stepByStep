@@ -307,6 +307,27 @@ public class EasyImpl implements Easy {
         return head.next;
     }
 
+    @Override
+    public int removeDuplicates(int[] nums) {
+
+        //第一种方法：两个指针前后互相比较
+        if(nums.length == 0){
+            return 0;
+        }
+        if(nums.length == 1){
+            return 1;
+        }
+        //返回的长度，如果有数据交换就 ++
+        int k =1;
+        for(int i = 1;i<nums.length;i++){
+            if(nums[i]!=nums[i-1]){
+                nums[k] = nums[i];
+                k++;
+            }
+        }
+
+        return k;
+    }
 
 
 }
