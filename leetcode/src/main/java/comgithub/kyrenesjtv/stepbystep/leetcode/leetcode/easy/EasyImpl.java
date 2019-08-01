@@ -329,5 +329,47 @@ public class EasyImpl implements Easy {
         return k;
     }
 
+    @Override
+    public int removeElement(int[] nums, int val) {
+        //第一种：循环,k从0开始
+        /**if(nums.length==0){
+            return 0;
+        }
+        if(nums.length==1){
+            return 1;
+        }
+        //返回的长度
+        int k = 0;
+        for(int i = 0 ; i<nums.length;i++){
+            //当数据不相等话，k就发生变化
+            if(nums[i]!=val){
+                nums[k]=nums[i];
+                k++;
+            }
+        }
+        return k;*/
+
+        //第而种：k从nums.length开始
+        if(nums.length==0){
+         return 0;
+         }
+         if(nums.length==1){
+         return 1;
+         }
+         //返回的长度
+         int k = nums.length;
+         int i = 0 ;
+         while(i<k){
+             if(nums[i]==val){
+                 //进行数据交换，并再次检查当前索引位置的值
+                 nums[i] = nums[k-1];
+                 k--;
+             }else {
+                 i++;
+             }
+         }
+         return k;
+    }
+
 
 }

@@ -75,5 +75,12 @@ public class EasyImplTest {
         System.out.println("111");
     }
 
+    @Test
+    public void removeElement() {
+        int[] mums = new int[]{1,1,1,2};
+        EasyImpl easy = new EasyImpl();
+        int i = easy.removeElement(mums,1);
+        System.out.println("111");
+    }
 
 }
