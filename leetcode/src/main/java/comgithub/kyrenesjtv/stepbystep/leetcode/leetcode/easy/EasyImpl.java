@@ -1,11 +1,9 @@
 package comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.easy;
 
 import comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.bean.ListNode;
+import comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.bean.ListNodeCircle;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Stack;
-import java.util.Vector;
+import java.util.*;
 
 /**
  * @ProjectName: stepByStep
@@ -417,8 +415,38 @@ public class EasyImpl implements Easy {
     }
 
     @Override
-    public boolean hasCycle(ListNode head) {
+    public boolean hasCycle(ListNodeCircle head) {
+
+        //第一种解法：快慢指针
+        /**if(head == null || head.next == null){
+            return false;
+        }
+        ListNodeCircle slow = head;
+        ListNodeCircle fast = head.next;
+        while(slow != fast){
+            if(slow == null || fast.next == null){
+                return false;
+            }
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return true;*/
+        
+        //第二种解法：hashSet
+        if(head == null || head.next == null){
+            return false;
+        }
+        Set<ListNodeCircle> set = new HashSet<>();
+        
+        while(head != null){
+            //如果存在 return false
+            if(!set.add(head)){
+                return true;
+            }
+            head = head.next;
+        }
         return false;
+        
     }
 
 

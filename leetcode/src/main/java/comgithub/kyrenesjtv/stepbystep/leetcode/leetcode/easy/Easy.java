@@ -1,6 +1,7 @@
 package comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.easy;
 
 import comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.bean.ListNode;
+import comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.bean.ListNodeCircle;
 
 /**
  * @ProjectName: stepByStep
@@ -169,5 +170,5 @@ public interface Easy {
      * @param head
      * @return
      */
-    public boolean hasCycle(ListNode head);
+    public boolean hasCycle(ListNodeCircle head);
 }
