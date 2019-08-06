@@ -310,7 +310,7 @@ public class EasyImpl implements Easy {
     @Override
     public int removeDuplicates(int[] nums) {
 
-        //第一种方法：两个指针前后互相比较
+        //第一种方法：两个指针前后互相比较,length 从0 开始
         if(nums.length == 0){
             return 0;
         }
@@ -327,6 +327,7 @@ public class EasyImpl implements Easy {
         }
 
         return k;
+
     }
 
     @Override
@@ -349,7 +350,7 @@ public class EasyImpl implements Easy {
         }
         return k;*/
 
-        //第而种：k从nums.length开始
+        //第二种：k从nums.length开始
         if(nums.length==0){
          return 0;
          }
@@ -369,6 +370,55 @@ public class EasyImpl implements Easy {
              }
          }
          return k;
+    }
+
+    @Override
+    public int strStr(String haystack, String needle) {
+
+        //第一种：while循环
+        /**if(needle.length() == 0){
+            return 0;
+        }
+        int k = haystack.length()-needle.length();
+        if(k<0){
+            return -1;
+        }
+        int i = 0 , j = 0;
+        while (j<needle.length()&& i<=k  ){
+            if(haystack.charAt(i)==needle.charAt(j)){
+                i++;
+                j++;
+            }else{
+                i++;
+                j=0;
+            }
+        }
+        return j==needle.length()?i-j:-1;*/
+
+        //第二种：for循环
+        if(needle.length() == 0){
+            return 0;
+        }
+        int k = haystack.length()-needle.length();
+        if(k<0){
+            return -1;
+        }
+        int j=0 , i = 0;
+        for( ; j<needle.length() && i<=k  ;i++){
+            if(haystack.charAt(i)==needle.charAt(j)){
+                j++;
+            }else{
+                j=0;
+            }
+        }
+        return j==needle.length()?i-j:-1;
+
+
+    }
+
+    @Override
+    public boolean hasCycle(ListNode head) {
+        return false;
     }
 
 

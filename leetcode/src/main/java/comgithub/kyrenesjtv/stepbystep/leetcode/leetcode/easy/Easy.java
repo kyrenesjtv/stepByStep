@@ -145,4 +145,29 @@ public interface Easy {
      * @return
      */
     int removeElement(int[] nums, int val);
+
+    /**
+     * 28：实现strStr()
+     *  给定一个 haystack 字符串和一个 needle 字符串，在 haystack 字符串中找出 needle 字符串出现的第一个位置 (从0开始)。如果不存在，则返回  -1。
+     *
+     *
+     * @param haystack
+     * @param needle
+     * @return
+     */
+    int strStr(String haystack, String needle);
+
+
+    /**
+     * 141 ：环形链表1
+     *
+     * 给定一个链表，判断链表中是否有环。
+     *
+     * 为了表示给定链表中的环，我们使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。 如果 pos 是 -1，则在该链表中没有环。
+     *
+     *
+     * @param head
+     * @return
+     */
+    public boolean hasCycle(ListNode head);
 }

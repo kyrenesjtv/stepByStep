@@ -83,4 +83,11 @@ public class EasyImplTest {
         System.out.println("111");
     }
 
+    @Test
+    public void strStr() {
+        EasyImpl easy = new EasyImpl();
+        int i = easy.strStr("qwertyuiop","we");
+        System.out.println("111");
+    }
+
 }
