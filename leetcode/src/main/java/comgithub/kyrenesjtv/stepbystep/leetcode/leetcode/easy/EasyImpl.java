@@ -431,8 +431,24 @@ public class EasyImpl implements Easy {
             fast = fast.next.next;
         }
         return true;*/
+
+        //第二种解法：快慢指针
+        /**if(head == null || head.next == null){
+         return false;
+         }
+         ListNodeCircle slow = head;
+         ListNodeCircle fast = head;
+         while(slow != null && fast.next != null){
+         if(slow == fast){
+         return true;
+         }
+         slow = slow.next;
+         fast = fast.next.next;
+         }
+         return false;*/
+
         
-        //第二种解法：hashSet
+        //第三种解法：hashSet
         if(head == null || head.next == null){
             return false;
         }
