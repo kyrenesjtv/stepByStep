@@ -1,5 +1,6 @@
 package comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.middle;
 
+import comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.bean.ListNode;
 import comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.bean.ListNodeCircle;
 
 import java.util.HashSet;
@@ -11,6 +12,39 @@ import java.util.Set;
  * @CreateDate: 2019/8/5 15:33
  */
 public class MiddleImpl implements Middle{
+
+    @Override
+    public ListNode swapPairs(ListNode head) {
+        //第一种解法：while
+        /**if(head == null){
+            return null;
+        }
+        ListNode result = new ListNode(0);
+        ListNode temp1 = result;
+        while(head != null){
+            if(head != null && head.next != null){
+                ListNode next = head.next;// next 2 3 4 5
+                temp1.next=next;//temp1 2 3 4 5
+                head.next = head.next.next;// 1 3 4 5
+                next.next =head;// next 2 1 3 4 5
+                head = head.next;// head 3 4 5
+                temp1 = temp1.next.next;// temp1 3 4 5
+            }else {
+                temp1.next = head;
+                head = head.next;
+            }
+        }
+        return result.next;*/
+
+        //第二种解法：递归
+        if(head == null ||head.next == null){
+            return head;
+        }
+        ListNode temp = head.next;
+        head.next = swapPairs(head.next.next);
+        temp.next = head;
+        return temp;
+    }
 
     @Override
     public ListNodeCircle detectCycle(ListNodeCircle head) {
