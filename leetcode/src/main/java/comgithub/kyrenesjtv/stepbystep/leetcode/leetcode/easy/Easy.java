@@ -171,4 +171,14 @@ public interface Easy {
      * @return
      */
     public boolean hasCycle(ListNodeCircle head);
+
+    /**
+     * 206：反转链表
+     *
+     * 反转一个单链表
+     *
+     * @param head
+     * @return
+     */
+    public ListNode reverseList(ListNode head);
 }

@@ -465,5 +465,58 @@ public class EasyImpl implements Easy {
         
     }
 
+    @Override
+    public ListNode reverseList(ListNode head) {
+
+        //第一种方法：栈
+        /**ListNode result = new ListNode(0);
+        ListNode temp = result;
+        Stack<ListNode> listNodes = new Stack<>();
+
+        while(head != null){
+            listNodes.push(head);
+            head = head.next;
+        }
+
+        while(!listNodes.isEmpty()){
+            temp.next =  listNodes.pop();
+            temp = temp.next;
+        }
+        if(listNodes.isEmpty()){
+            temp.next = null;
+        }
+
+        return result.next;*/
+
+        //第二种：迭代
+        /**ListNode result = null;
+        ListNode temp = head;
+        while(temp != null){
+            ListNode next = temp.next;
+            temp.next = result;
+            result = temp;
+            temp = next;
+        }
+        return result;*/
+
+        //第三种：递归
+        ListNode last = head; // 1 2 3 n
+        ListNode current = last.next;// 2 3 n
+        ListNode result = recursionReverseList(head , current , last);
+        return result;
+
+    }
+
+    private ListNode recursionReverseList(ListNode head , ListNode current , ListNode last){
+        if(current == null){
+            return head;
+        }
+        last.next = current.next;// 1 3 n
+        ListNode temp = current.next;// 3 n
+        current.next = head;// 2 1 3 n
+        return recursionReverseList( current ,temp ,last );
+    }
+
+
 
 }
