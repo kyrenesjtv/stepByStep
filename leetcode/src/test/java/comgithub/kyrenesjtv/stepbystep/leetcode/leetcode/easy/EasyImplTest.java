@@ -3,7 +3,7 @@ package comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.easy;
 import comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.bean.ListNode;
 import org.junit.Test;
 
-import java.util.Random;
+import java.util.*;
 
 import static org.junit.Assert.*;
 
@@ -108,6 +108,66 @@ public class EasyImplTest {
         //        listNode6.next=listNode7;
         ListNode node = easy.reverseList(listNode1);
         System.out.println("1111");
+    }
+
+    @Test
+    public void KthLargest() {
+        int[] ints = new int[]{1,3,5,7,9};
+        KthLargest_List kthLargest_priorityQueue = new KthLargest_List(3, ints);
+        int add = kthLargest_priorityQueue.add(8);
+
+        //        List<Integer> list = new ArrayList<>();
+//        list.add(2);
+//        list.add(4);
+//        list.add(3);
+//        list.add(6);
+//        list.add(5);
+
+
+
+        System.out.println("1111");
+
+    }
+
+    private static void insertionSort(List<Integer> a, int n )  {
+        if(n <= 0 ){
+            return;
+        }
+        for(int i = 1 ; i < n ; i++){
+            int value = a.get(i);
+            int j=i-1;
+            for(; j>=0;j--){
+                //进行数据交换
+                if(a.get(j) < value){
+                    a.set(j+1, a.get(j));
+                }else {
+                    break;
+                }
+            }
+            //插入数据
+            a.set(j+1 , value);
+        }
+    }
+
+
+    private static void insertionSort(int[] a , int n )  {
+        if(n <= 0 ){
+            return;
+        }
+        for(int i = 1 ; i < n ; i++){
+            int value = a[i];
+            int j=i-1;
+            for(; j>=0;j--){
+                //进行数据交换
+                if(a[j] < value){
+                    a[j+1] = a[j];
+                }else {
+                    break;
+                }
+            }
+            //插入数据
+            a[j+1]=value;
+        }
     }
 
 }

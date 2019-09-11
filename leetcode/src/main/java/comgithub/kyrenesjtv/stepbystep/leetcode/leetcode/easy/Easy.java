@@ -197,6 +197,8 @@ public interface Easy {
      * 你所使用的语言也许不支持队列。 你可以使用 list 或者 deque（双端队列）来模拟一个队列 , 只要是标准的队列操作即可。
      * 你可以假设所有操作都是有效的（例如, 对一个空的栈不会调用 pop 或者 top 操作）。
      *
+     * MyStack_deque
+     * MyStack_list
      */
 
 
@@ -215,6 +217,18 @@ public interface Easy {
      * 你所使用的语言也许不支持栈。你可以使用 list 或者 deque（双端队列）来模拟一个栈，只要是标准的栈操作即可。
      * 假设所有操作都是有效的 （例如，一个空的队列不会调用 pop 或者 peek 操作）。
      *
+     * MyQueue_stack
+     */
+
+    /**
+     * 703. 数据流中的第K大元素
+     *
+     * 设计一个找到数据流中第K大元素的类（class）。注意是排序后的第K大元素，不是第K个不同的元素。
+     *
+     * 你的 KthLargest 类需要一个同时接收整数 k 和整数数组nums 的构造器，它包含数据流中的初始元素。每次调用 KthLargest.add，返回当前数据流中第K大的元素。
+     *
+     *  KthLargest_PriorityQueue 优先队列
+     *  KthLargest_List     维护一个size = k 的 数组
      */
 
 }
