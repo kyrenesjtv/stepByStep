@@ -114,7 +114,7 @@ public class EasyImplTest {
     public void KthLargest() {
         int[] ints = new int[]{1,3,5,7,9};
         KthLargest_List kthLargest_priorityQueue = new KthLargest_List(3, ints);
-        int add = kthLargest_priorityQueue.add(8);
+        kthLargest_priorityQueue.add(8);
 
         //        List<Integer> list = new ArrayList<>();
 //        list.add(2);
@@ -123,11 +123,20 @@ public class EasyImplTest {
 //        list.add(6);
 //        list.add(5);
 
-
-
         System.out.println("1111");
 
     }
+
+
+    @Test
+    public void maxSlidingWindow() {
+        int[] ints = new int[]{1,3,-1,-3,5,3,6,7};
+        EasyImpl easy = new EasyImpl();
+        int[] ints1 = easy.maxSlidingWindow(ints, 3);
+        System.out.println("1111");
+
+    }
+
 
     private static void insertionSort(List<Integer> a, int n )  {
         if(n <= 0 ){

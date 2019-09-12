@@ -507,6 +507,46 @@ public class EasyImpl implements Easy {
 
     }
 
+    @Override
+    public int[] maxSlidingWindow(int[] nums, int k) {
+
+        //第一种：暴力破解 类似冒泡
+        /**int[] result = new int[nums.length-k+1];
+        int maxValue = nums[0];
+        for(int i = 0 ; i <= nums.length-k;i++){
+            for(int j = i ; j<k+i;j++){
+                if(nums[j] > maxValue){
+                    maxValue = nums[j];
+                }
+            }
+            result[i] = maxValue;
+        }
+        return result;*/
+
+        //第二种：双向队列 LinkedLsit 和 Deque 都行
+        ArrayDeque<Integer> deque = new ArrayDeque<>();
+        int[] result = new int[nums.length-k+1];
+
+        for(int i = 0 ; i < nums.length ; i++){
+            //保证数组从大到小
+            while(!deque.isEmpty() && nums[deque.peekFirst()] < nums[i]){
+                deque.pollFirst();
+            }
+            deque.addLast(i);
+            //保证deque的长度在k之内
+            if(deque.peekFirst() <= i-k){
+                deque.pollLast();
+            }
+            //保存最大值
+            if(i+1>=k){
+                result[i+1-k] = nums[deque.peekFirst()];
+            }
+        }
+
+        return result;
+
+    }
+
     private ListNode recursionReverseList(ListNode head , ListNode current , ListNode last){
         if(current == null){
             return head;
