@@ -547,7 +547,94 @@ public class EasyImpl implements Easy {
 
     }
 
-    private ListNode recursionReverseList(ListNode head , ListNode current , ListNode last){
+    @Override
+    public boolean isAnagram(String s, String t) {
+
+        //第一种方法：排序之后进行比较
+        if(s.length() != t.length()){
+            return false;
+        }
+        char[] schars = s.toCharArray();
+        char[] tchars = t.toCharArray();
+        quickSort(schars,0,schars.length-1);
+        quickSort(tchars,0,tchars.length-1);
+
+        int i = 0 ;
+        while(i < s.length() ){
+            if(schars[i] != tchars[i]){
+                return false;
+            }
+            i++;
+        }
+
+        return true;
+
+        //第二种方法：用map来接收，判断每个字母出现的count
+        /**if(s.length() != t.length()){
+            return false;
+        }
+        char[] schars = s.toCharArray();
+        char[] tchars = t.toCharArray();
+
+        Map<Character, Integer> smap = new HashMap<>();
+        Map<Character, Integer> tmap = new HashMap<>();
+        for(int i = 0 ; i<schars.length;i++){
+            if(smap.containsKey(schars[i])){
+                smap.put(schars[i],smap.get(schars[i])+1);
+            }else {
+                smap.put(schars[i],1);
+            }
+        }
+
+        for(int i = 0 ; i<tchars.length;i++){
+            if(tmap.containsKey(tchars[i])){
+                tmap.put(tchars[i],tmap.get(tchars[i])+1);
+            }else {
+                tmap.put(tchars[i],1);
+            }
+        }
+        return smap.equals(tmap);*/
+    }
+
+
+    public static void quickSort(char[] arr,int low,int high) {
+        int i, j;
+        if (low > high) {
+            return;
+        }
+        i = low;
+        j = high;
+        //temp就是基准位
+        char temp = arr[low];
+
+        while (i < j) {
+            //先看右边，依次往左递减
+            while (temp <= arr[j] && i < j) {
+                j--;
+            }
+            //再看左边，依次往右递增
+            while (temp >= arr[i] && i < j) {
+                i++;
+            }
+            //如果满足条件则交换
+            if (i < j) {
+                char t = arr[j];
+                arr[j] = arr[i];
+                arr[i] = t;
+            }
+
+        }
+        //最后将基准为与i和j相等位置的数字交换
+        arr[low] = arr[i];
+        arr[i] = temp;
+        //递归调用左半数组
+        quickSort(arr, low, j - 1);
+        //递归调用右半数组
+        quickSort(arr, j + 1, high);
+    }
+
+
+        private ListNode recursionReverseList(ListNode head , ListNode current , ListNode last){
         if(current == null){
             return head;
         }

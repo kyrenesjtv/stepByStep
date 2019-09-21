@@ -137,6 +137,13 @@ public class EasyImplTest {
 
     }
 
+    @Test
+    public void isAnagram() {
+        EasyImpl easy = new EasyImpl();
+        Boolean result = easy.isAnagram("abcde", "edcba");
+        System.out.println("1111");
+
+    }
 
     private static void insertionSort(List<Integer> a, int n )  {
         if(n <= 0 ){
