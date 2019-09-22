@@ -219,6 +219,111 @@ public class EasyImpl implements Easy {
         return longestCommonPrefix(strs,0,strs.length-1);
     }
 
+    @Override
+    public List<List<Integer>> threeSum(int[] nums) {
+
+        //第一种解法：暴力破解 3for  但是这种有可能会有重复的数据 ， 最后要做一下过滤
+        if(nums.length <3){
+            return null;
+        }
+        List<List<Integer>> result = new ArrayList<>();
+        //对数组进行排序
+        quickSort(nums,0,nums.length-1);
+        for(int i = 0 ; i <nums.length-2;i++){
+            for(int j = i+1 ; j < nums.length-1;j++){
+                for(int k = j+1 ; k <nums.length;k++){
+                    if(nums[i]+nums[j]+nums[k] == 0){
+                        List<Integer> temp = new ArrayList<>();
+                        temp.add(nums[i]);
+                        temp.add(nums[j]);
+                        temp.add(nums[k]);
+                        //数据进行过滤
+                        if(!result.contains(temp)){
+                            result.add(temp);
+                        }
+                    }
+                }
+            }
+        }
+        return result;
+
+        //第二种解法：2层for之后去SET里面找
+        /**if(nums.length <3){
+            return null;
+        }
+        List<List<Integer>> result = new ArrayList<>();
+        //对数组进行排序
+        quickSort(nums,0,nums.length-1);
+        //放入SET中
+        Set<Integer> intSet = new HashSet<>();
+        for(int i = 0 ; i <nums.length ; i++){
+            intSet.add(nums[i]);
+        }
+
+        for(int i = 0 ; i < nums.length-1 ; i++){
+            //进行数据过滤
+            if(i > 0 ){
+                break;
+            }
+            for(int j = i+1 ; j < nums.length ; j++){
+                if(intSet.contains(-nums[i]-nums[j])){
+                    List<Integer> temp = new ArrayList<>();
+                    //将数据从小到大进行排序 ， 然后进行过滤 num[i] 永远是最小的
+                    temp.add(nums[i]);
+                    if(nums[j] < -nums[i]-nums[j]){
+                        temp.add(nums[j]);
+                        temp.add(-nums[i]-nums[j]);
+                    }else{
+                        temp.add(-nums[i]-nums[j]);
+                        temp.add(nums[j]);
+                    }
+                    if(!result.contains(temp)){
+                        result.add(temp);
+                    }
+                }
+            }
+        }
+        return result;*/
+
+        //第三种解法：一层for之后，用while循环 左 右分别往中间走
+        /**if(nums.length <3){
+            return null;
+        }
+        //对数组进行排序
+        quickSort(nums,0,nums.length-1);
+        List<List<Integer>> result = new ArrayList<>();
+        for(int i = 0 ; i<nums.length-2; i ++){
+            int head = i + 1 ;
+            int tail = nums.length - 1 ;
+            while(head < tail){
+                if(nums[i]+nums[head]+nums[tail] < 0){
+
+                        head++;
+
+                }else if(nums[i]+nums[head]+nums[tail] > 0){
+                        tail--;
+                }else {
+                    List<Integer> temp = new ArrayList<>();
+                    temp.add(nums[i]);
+                    temp.add(nums[head]);
+                    temp.add(nums[tail]);
+                    result.add(temp);
+                    //解决结果不包含相同元素
+                    while(head < tail && nums[head]== nums[head+1]){
+                        head++;
+                    }
+                    while(head < tail && nums[tail]== nums[tail-1]){
+                        tail--;
+                    }
+                    head++;
+                    tail--;
+                }
+            }
+        }
+        return result;*/
+
+    }
+
     private String longestCommonPrefix(String[] strs, int l, int r) {
         if(l==r){
             return strs[l];
@@ -633,8 +738,45 @@ public class EasyImpl implements Easy {
         quickSort(arr, j + 1, high);
     }
 
+    public static void quickSort(int[] arr,int low,int high) {
+        int i, j;
+        if (low > high) {
+            return;
+        }
+        i = low;
+        j = high;
+        //temp就是基准位
+        int temp = arr[low];
 
-        private ListNode recursionReverseList(ListNode head , ListNode current , ListNode last){
+        while (i < j) {
+            //先看右边，依次往左递减
+            while (temp <= arr[j] && i < j) {
+                j--;
+            }
+            //再看左边，依次往右递增
+            while (temp >= arr[i] && i < j) {
+                i++;
+            }
+            //如果满足条件则交换
+            if (i < j) {
+                int t = arr[j];
+                arr[j] = arr[i];
+                arr[i] = t;
+            }
+
+        }
+        //最后将基准为与i和j相等位置的数字交换
+        arr[low] = arr[i];
+        arr[i] = temp;
+        //递归调用左半数组
+        quickSort(arr, low, j - 1);
+        //递归调用右半数组
+        quickSort(arr, j + 1, high);
+    }
+
+
+
+    private ListNode recursionReverseList(ListNode head , ListNode current , ListNode last){
         if(current == null){
             return head;
         }

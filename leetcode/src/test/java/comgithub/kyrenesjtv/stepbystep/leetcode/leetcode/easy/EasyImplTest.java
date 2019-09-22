@@ -145,6 +145,15 @@ public class EasyImplTest {
 
     }
 
+    @Test
+    public void threeSum() {
+        int[] ints = new int[]{1,3,-1,-3,5,3,-6,7,7};
+        EasyImpl easy = new EasyImpl();
+        List<List<Integer>> result = easy.threeSum(ints);
+        System.out.println("1111");
+
+    }
+
     private static void insertionSort(List<Integer> a, int n )  {
         if(n <= 0 ){
             return;
