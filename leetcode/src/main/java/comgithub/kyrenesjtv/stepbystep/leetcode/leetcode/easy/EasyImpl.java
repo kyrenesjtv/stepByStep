@@ -2,6 +2,7 @@ package comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.easy;
 
 import comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.bean.ListNode;
 import comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.bean.ListNodeCircle;
+import comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.middle.TreeNode;
 
 import java.util.*;
 
@@ -611,6 +612,32 @@ public class EasyImpl implements Easy {
         ListNode result = recursionReverseList(head, current, last);
         return result;
 
+    }
+
+    @Override
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+
+        //第一种方式：递归
+        /**if(root.val > p.val && root.val > q.val){
+            return lowestCommonAncestor(root.left,p,q);
+        }
+        if(root.val < p.val && root.val < q.val){
+            return lowestCommonAncestor(root.right,p,q);
+        }
+        return root;*/
+
+        //第二种方式：迭代
+        TreeNode temp = root;
+        while (temp != null){
+            if(temp.val > p.val && temp.val > q.val){
+                temp = temp.left;
+            }else if(temp.val < p.val && temp.val < q.val){
+                temp = temp.right;
+            } else {
+                return temp;
+            }
+        }
+        return temp;
     }
 
     @Override
