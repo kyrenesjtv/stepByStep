@@ -19,74 +19,75 @@ public class KthLargest_List {
         intList = new ArrayList<>();
         this.length = k;
         //对nums进行排序
-        insertionSort(nums , nums.length);
+        insertionSort(nums, nums.length);
 
-        for(int i = 0 ; i<nums.length ; i++){
+        for (int i = 0; i < nums.length; i++) {
             intList.add(nums[i]);
             //维护 list 长度为k
-            if(intList.size() == k){
+            if (intList.size() == k) {
                 return;
             }
         }
     }
 
     public int add(int val) {
-        if(intList.size() < this.length){
+        if (intList.size() < this.length) {
             intList.add(val);
-            insertionSort(intList,intList.size());
-        }else{
-            if(intList.get(intList.size()-1) < val ){
+            insertionSort(intList, intList.size());
+        } else {
+            if (intList.get(intList.size() - 1) < val) {
                 intList.add(val);
-                insertionSort(intList,intList.size());
-                intList = intList.subList(0,this.length);
+                insertionSort(intList, intList.size());
+                intList = intList.subList(0, this.length);
             }
         }
 
-        return intList.get(intList.size()-1);
+        return intList.get(intList.size() - 1);
     }
 
     /**
-     *  插入排序 由大到小
+     * 插入排序 由大到小
+     *
      * @param a 数组
      * @param n 数组长度
      */
-    private static void insertionSort(int[] a , int n )  {
-        if(n <= 0 ){
+    private static void insertionSort(int[] a, int n) {
+        if (n <= 0) {
             return;
         }
-        for(int i = 1 ; i < n ; i++){
+        for (int i = 1; i < n; i++) {
             int value = a[i];
-            int j=i-1;
-            for(; j>=0;j--){
+            int j = i - 1;
+            for (; j >= 0; j--) {
                 //进行数据交换
-                if(a[j] < value){
-                    a[j+1] = a[j];
-                }else {
+                if (a[j] < value) {
+                    a[j + 1] = a[j];
+                } else {
                     break;
                 }
             }
             //插入数据
-            a[j+1]=value;
+            a[j + 1] = value;
         }
     }
 
-    private static void insertionSort(List<Integer> a, int n )  {
-        if(n <= 0 ){
+    private static void insertionSort(List<Integer> a, int n) {
+        if (n <= 0) {
             return;
         }
-        for(int i = 1 ; i < n ; i++){
+        for (int i = 1; i < n; i++) {
             int value = a.get(i);
-            int j=i-1;
-            for(; j>=0;j--){
+            int j = i - 1;
+            for (; j >= 0; j--) {
                 //进行数据交换
-                if(a.get(j) < value){
-                    a.set(j+1, a.get(j));
-                }else {
+                if (a.get(j) < value) {
+                    a.set(j + 1, a.get(j));
+                } else {
                     break;
                 }
             }
             //插入数据
-            a.set(j+1 , value);
+            a.set(j + 1, value);
         }
     }
 

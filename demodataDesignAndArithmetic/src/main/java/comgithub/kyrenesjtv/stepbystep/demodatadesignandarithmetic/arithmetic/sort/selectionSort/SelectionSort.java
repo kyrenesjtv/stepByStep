@@ -9,27 +9,28 @@ public class SelectionSort {
 
     /**
      * 第一种选择排序
+     *
      * @param sort
      * @param n
      */
-    public  void SelectionSort(int[] sort ,int n){
-        if(n<1){
+    public void SelectionSort(int[] sort, int n) {
+        if (n < 1) {
             return;
         }
 
-        for(int i = 0 ; i<n-1 ; i++){
-            int k = i ;
-            for(int j = i+1;j<n;j++){
-                if(sort[j]<sort[i]){
+        for (int i = 0; i < n - 1; i++) {
+            int k = i;
+            for (int j = i + 1; j < n; j++) {
+                if (sort[j] < sort[i]) {
                     //索引交换
-                    k=j;
+                    k = j;
                 }
             }
-            if(i != k ){
+            if (i != k) {
                 //数据交换
                 int temp = sort[k];
-                sort[k]=sort[i];
-                sort[i]=temp;
+                sort[k] = sort[i];
+                sort[i] = temp;
             }
         }
     }

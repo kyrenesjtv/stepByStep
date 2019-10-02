@@ -10,31 +10,41 @@ import java.util.List;
  */
 public class MyStack_list {
 
-    List<Integer> list ;
+    List<Integer> list;
 
-    /** Initialize your data structure here. */
+    /**
+     * Initialize your data structure here.
+     */
     public MyStack_list() {
         list = new ArrayList();
     }
 
-    /** Push element x onto stack. */
+    /**
+     * Push element x onto stack.
+     */
     public void push(int x) {
         list.add(x);
     }
 
-    /** Removes the element on top of the stack and returns that element. */
+    /**
+     * Removes the element on top of the stack and returns that element.
+     */
     public int pop() {
         Integer integer = list.get(list.size() - 1);
         list.remove(list.size() - 1);
         return integer;
     }
 
-    /** Get the top element. */
+    /**
+     * Get the top element.
+     */
     public int top() {
         return list.get(list.size() - 1);
     }
 
-    /** Returns whether the stack is empty. */
+    /**
+     * Returns whether the stack is empty.
+     */
     public boolean empty() {
         return list.isEmpty();
     }

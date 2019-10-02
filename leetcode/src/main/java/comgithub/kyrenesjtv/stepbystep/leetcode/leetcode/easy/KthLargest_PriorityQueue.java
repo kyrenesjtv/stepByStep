@@ -16,18 +16,18 @@ public class KthLargest_PriorityQueue {
     public KthLargest_PriorityQueue(int k, int[] nums) {
         intList = new PriorityQueue<>(k);
         this.length = k;
-        for(int i = 0 ; i<nums.length ; i++){
+        for (int i = 0; i < nums.length; i++) {
             intList.offer(nums[i]);
-            if(intList.size() > k){
+            if (intList.size() > k) {
                 intList.poll();
             }
         }
     }
 
     public int add(int val) {
-        if(intList.size() < this.length){
+        if (intList.size() < this.length) {
             intList.offer(val);
-        }else if(val > intList.peek()){
+        } else if (val > intList.peek()) {
             intList.poll();
             intList.offer(val);
         }

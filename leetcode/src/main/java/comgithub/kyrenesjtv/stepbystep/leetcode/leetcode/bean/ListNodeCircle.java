@@ -12,7 +12,7 @@ public class ListNodeCircle {
 
     public ListNodeCircle(int x) {
         val = x;
-        next=null;
+        next = null;
     }
 
 }
