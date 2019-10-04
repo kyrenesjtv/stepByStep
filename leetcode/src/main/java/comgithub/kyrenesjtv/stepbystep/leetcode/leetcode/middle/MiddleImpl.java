@@ -119,7 +119,7 @@ public class MiddleImpl implements Middle {
 //        return isValidBSTHelper1(root,Integer.MIN_VALUE,Integer.MAX_VALUE);
 
         //第三种方法：中序遍历 左根右
-        if(root == null){
+        /**if(root == null){
             return true;
         }
         //遍历到最左边的一个节点 该节点的左节点为null
@@ -132,7 +132,30 @@ public class MiddleImpl implements Middle {
         }
         //保存子节点的信息
         pre = root;
-        return isValidBST(root.right);
+        return isValidBST(root.right);*/
+
+        //第四种方法：迭代
+        Stack<TreeNode> nodeStack = new Stack<>();
+        TreeNode temp = root;
+        TreeNode pre1 = null;
+
+        while(temp != null && !nodeStack.isEmpty()){
+            //最左下角
+            while(temp != null){
+                nodeStack.push(temp);
+                temp = temp.left;
+            }
+            temp = nodeStack.pop();
+            //进行对比，在最左下角的时候temp是为null的
+            if(pre1 != null && pre1.val >= temp.val){
+                return false;
+            }
+            //记住上一次
+            pre1 = temp;
+            temp = temp.right;
+        }
+
+        return true;
     }
 
     private boolean isValidBSTHelper1(TreeNode node, Integer left, Integer right) {
