@@ -131,7 +131,7 @@ public class MiddleImpl implements Middle {
         pre = root;
         return isValidBST(root.right);*/
 
-        //第四种方法：迭代
+        //第四种方法：迭代 中序遍历
         Stack<TreeNode> nodeStack = new Stack<>();
         TreeNode temp = root;
         TreeNode pre1 = null;
