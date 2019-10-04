@@ -4,10 +4,7 @@ import comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.bean.ListNode;
 import comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.bean.ListNodeCircle;
 
 import javax.xml.stream.FactoryConfigurationError;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.Stack;
-import java.util.Vector;
+import java.util.*;
 
 /**
  * @ProjectName: stepByStep
@@ -157,6 +154,51 @@ public class MiddleImpl implements Middle {
 
         return true;
     }
+
+    @Override
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        //第一种方法： 递归 去找p 和 q
+        /**if(root == null || root == p || root ==q){
+            return root;
+        }
+        TreeNode left = lowestCommonAncestor(root.left,p,q);
+        TreeNode right = lowestCommonAncestor(root.right,p,q);
+        return left == null? right: right==null?left:root;*/
+
+        //第二种方法：迭代
+        if(root == null || root == p || root ==q){
+            return root;
+        }
+
+        Stack<TreeNode> nodeStack = new Stack<>();
+        Map<TreeNode, TreeNode> nodeHashMap = new HashMap<>();
+        nodeHashMap.put(root,null);
+        nodeStack.push(root);
+        while(!nodeHashMap.containsKey(p) ||!nodeHashMap.containsKey(q) ){
+            TreeNode parent = nodeStack.pop();
+            if(root.left != null){
+                nodeHashMap.put(root.left,parent);
+                nodeStack.push(root.left);
+            }
+            if(root.right != null){
+                nodeHashMap.put(root.right,parent);
+                nodeStack.push(root.right);
+            }
+        }
+        // 用来存放p的这一系祖先
+        Set<TreeNode> nodeSet = new HashSet<>();
+        while(p != null){
+            nodeSet.add(p);
+            p = nodeHashMap.get(p);
+        }
+        //查看 q 的祖先与 p的交点
+        while(!nodeSet.contains(q)){
+            q = nodeHashMap.get(q);
+        }
+        return q;
+    }
+
+
 
     private boolean isValidBSTHelper1(TreeNode node, Integer left, Integer right) {
         if(node == null){
