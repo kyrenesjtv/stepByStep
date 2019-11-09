@@ -47,6 +47,12 @@ public class MiddleImplTest {
     }
 
     @Test
+    public void myPow() {
+
+        double v = MIDDLE.myPow(2.10000, 3);
+        System.out.println(v);
+    }
+    @Test
     public void test01() {
         TreeNode root = new TreeNode(2);
         TreeNode root1 = new TreeNode(1);

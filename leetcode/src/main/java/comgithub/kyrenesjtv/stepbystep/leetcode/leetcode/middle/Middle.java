@@ -25,6 +25,14 @@ public interface Middle {
 
 
     /**
+     * 实现 pow(x, n) ，即计算 x 的 n 次幂函数。 x可以为正负数
+     * @param x
+     * @param n
+     * @return
+     */
+    double myPow(double x, int n);
+
+    /**
      * 142: 环形链表2
      * <p>
      * 给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。

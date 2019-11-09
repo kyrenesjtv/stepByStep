@@ -47,6 +47,75 @@ public class MiddleImpl implements Middle {
     }
 
     @Override
+    public double myPow(double x, int n) {
+
+        //第一种方法：调用MATH
+//        return Math.pow(x,n);
+
+        //第二种方法：for循环
+        /**double result = 1;
+        //n小于0  x 变成1/x
+        if(n < 0){
+            x = 1/x;
+            n = -n;
+        }
+        for(int i = 0 ; i< n;i++){
+                result *=  x;
+        }
+        return result;*/
+
+        //第三种方法：while循环
+        /**double result = 1;
+        if(n < 0){
+            x = 1/x;
+            n = -n;
+        }
+        while (n > 0){
+            result *=  x;
+            n--;
+        }
+        return result;*/
+
+        //第四种方法：递归
+        /**if(n < 0){
+            x = 1/x;
+            n = -n;
+        }
+        return recursionPow(x,n);*/
+
+        //第五种方法：分治（二分递归） 采取一半的运算
+        if(n < 0){
+            x = 1/x;
+            n = -n;
+        }
+        return fastRecursionPow(x,n);
+
+
+
+    }
+
+    public double fastRecursionPow(double x, int n) {
+        if(n==0){
+            return 1;
+        }
+        double v = fastRecursionPow(x, n >>1);
+        if(n % 2 == 0){
+            //偶数
+            return v*v;
+        }
+        //奇数
+        return v*v*x;
+    }
+
+    public double recursionPow(double x, int n) {
+        if(n==0){
+            return 1;
+        }
+        double v = recursionPow(x, n - 1);
+        return v*x;
+    }
+
+    @Override
     public ListNodeCircle detectCycle(ListNodeCircle head) {
 
         //第一种解法：hashSet
