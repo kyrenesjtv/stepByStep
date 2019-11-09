@@ -195,6 +195,17 @@ public interface Easy {
     public boolean hasCycle(ListNodeCircle head);
 
     /**
+     * 169. 求众数
+     * 给定一个大小为 n 的数组，找到其中的众数。众数是指在数组中出现次数大于 ⌊ n/2 ⌋ 的元素。
+     *
+     * 你可以假设数组是非空的，并且给定的数组总是存在众数。
+     * @param nums
+     * @return
+     */
+    int majorityElement(int[] nums);
+
+
+    /**
      * 206：反转链表
      * <p>
      * 反转一个单链表

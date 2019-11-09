@@ -573,6 +573,64 @@ public class EasyImpl implements Easy {
     }
 
     @Override
+    public int majorityElement(int[] nums) {
+
+        //第一种方法：map计数
+        /**Map<Integer, Integer> map = new HashMap<>();
+        for(int i = 0 ; i< nums.length ; i++){
+            if(!map.containsKey(nums[i])){
+                map.put(nums[i],1);
+            }else {
+                map.put(nums[i],map.get(nums[i])+1);
+            }
+        }
+        Integer count=0;
+        Integer key=0;
+        for(Map.Entry<Integer,Integer> obj : map.entrySet()){
+            if(obj.getValue() >count){
+                count =obj.getValue();
+                key =obj.getKey();
+            }
+        }
+        return key;*/
+
+        //第二种：排序之后 取n/2索引的value
+        /**quickSort(nums,0,nums.length-1);
+        return nums[(nums.length-1)/2];*/
+
+        //第三种方法：分治
+        return divideMajorityElement(nums,0,nums.length-1);
+    }
+
+
+    public static int divideMajorityElement(int[] nums , int low , int high){
+        if(low == high){
+            return nums[low];
+        }
+        int mid = (high-low)/2+low;
+        int left = divideMajorityElement(nums , low ,mid);
+        int right = divideMajorityElement(nums , mid+1 ,high);
+
+        if(left == right){
+            return left;
+        }
+        //取计数
+        int leftCount = countDivideMajorityElement(nums,left);
+        int rightCount = countDivideMajorityElement(nums,right);
+        return leftCount>rightCount?left:right;
+    }
+
+    public static int countDivideMajorityElement(int[] nums,int target){
+        int count = 0 ;
+        for(int i = 0 ; i< nums.length ; i++){
+            if(nums[i]==target){
+                count++;
+            }
+        }
+        return count;
+    }
+
+    @Override
     public ListNode reverseList(ListNode head) {
 
         //第一种方法：栈
