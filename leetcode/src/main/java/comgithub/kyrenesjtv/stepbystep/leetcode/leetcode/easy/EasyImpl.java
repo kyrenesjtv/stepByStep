@@ -521,6 +521,34 @@ public class EasyImpl implements Easy {
 
     }
 
+    private int res;
+
+    @Override
+    public int maxProfit(int[] prices) {
+
+
+        //第一种方法：贪心算法。如果今天的比前一天的大，就卖掉。再买进当天。如此循环
+        /**int result = 0 ;
+        for(int i = 1 ; i<prices.length ; i++){
+            if(prices[i]>prices[i-1]){
+                result += prices[i]- prices[i-1];
+            }
+        }
+        return result;*/
+
+        //第二种方案：动态规划。获取到每天的收益。
+        int[] profit = new int[prices.length];
+        for (int i = 1; i < prices.length; i++){
+            //(前一天的收益+(今天的股票价钱-昨天的股票价钱)->今天股票所赚的钱)=今天的收益 ， 跟前一天的收益去比较
+            profit[i] = Math.max(profit[i-1]+prices[i]-prices[i-1],profit[i-1]);
+        }
+        return profit[prices.length-1];
+
+    }
+
+
+
+
     @Override
     public boolean hasCycle(ListNodeCircle head) {
 
@@ -614,7 +642,7 @@ public class EasyImpl implements Easy {
         if(left == right){
             return left;
         }
-        //取计数
+        //取计数 , 总感觉这边的计数的话， 应该是leftCount 取mid+1 ,high范围， rightCount取low ,mid。这样子能减少 O(n)的时间
         int leftCount = countDivideMajorityElement(nums,left);
         int rightCount = countDivideMajorityElement(nums,right);
         return leftCount>rightCount?left:right;

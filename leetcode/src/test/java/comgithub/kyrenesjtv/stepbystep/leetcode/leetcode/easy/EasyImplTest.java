@@ -162,6 +162,14 @@ public class EasyImplTest {
     }
 
     @Test
+    public void maxProfit() {
+        EasyImpl easy = new EasyImpl();
+        Integer result = easy.maxProfit(new int[]{7,1,5,3,6,4});
+//        Integer result = easy.maxProfit(new int[]{1,2,3,4,5});
+        System.out.println(result);
+    }
+
+    @Test
     public void test01() {
         String aa = "2019-09-16 15:00:00";
         String substring = aa.substring(0, 10);
