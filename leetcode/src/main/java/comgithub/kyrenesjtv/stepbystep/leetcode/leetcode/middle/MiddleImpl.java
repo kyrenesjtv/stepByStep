@@ -94,6 +94,62 @@ public class MiddleImpl implements Middle {
 
     }
 
+    @Override
+    public List<List<Integer>> levelOrder(TreeNode root) {
+
+        //第一种方法：BFS 广度优先搜索
+        /**List<List<Integer>> result = new ArrayList<>();
+
+        if(null==root){
+            return result;
+        }
+
+        ArrayDeque<TreeNode> queue = new ArrayDeque<>();
+        queue.addLast(root);
+        //记录层数
+        int index = 0;
+        while (!queue.isEmpty()){
+            List<Integer> list = new ArrayList<>();
+            int length = queue.size();
+            for(int i = 0;i<length;i++){
+                TreeNode curr = queue.removeFirst();
+                list.add(curr.val);
+                if(curr.left != null){
+                    queue.addLast(curr.left);
+                }
+                if(curr.right != null){
+                    queue.addLast(curr.right);
+                }
+            }
+            result.add(list);
+            index++;
+        }
+        return result;*/
+
+        //第二种方法：深度优先搜索 DFS 也就是递归
+        List<List<Integer>> result = new ArrayList<>();
+
+        if(null==root){
+            return result;
+        }
+        dfsLevelOrder(root,0,result);
+        return result;
+    }
+
+    public void dfsLevelOrder(TreeNode node , int level,List<List<Integer>> levelList){
+        //防止多出尾巴
+        if(level == levelList.size()){
+            levelList.add(new ArrayList<>());
+        }
+        levelList.get(level).add(node.val);
+        if(node.left!=null){
+            dfsLevelOrder(node.left,level+1,levelList);
+        }
+        if(node.right!=null){
+            dfsLevelOrder(node.right,level+1,levelList);
+        }
+    }
+
     public double fastRecursionPow(double x, int n) {
         if(n==0){
             return 1;

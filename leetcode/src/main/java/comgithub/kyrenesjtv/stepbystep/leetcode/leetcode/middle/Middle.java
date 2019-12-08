@@ -3,6 +3,8 @@ package comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.middle;
 import comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.bean.ListNode;
 import comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.bean.ListNodeCircle;
 
+import java.util.List;
+
 /**
  * @ProjectName: stepByStep
  * @Author: AlbertW
@@ -32,6 +34,13 @@ public interface Middle {
      * @return
      */
     double myPow(double x, int n);
+
+    /**
+     * 102:给定一个二叉树，返回其按层次遍历的节点值。 （即逐层地，从左到右访问所有节点）。
+     * @param root
+     * @return
+     */
+    public List<List<Integer>> levelOrder(TreeNode root);
 
     /**
      * 142: 环形链表2
