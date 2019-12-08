@@ -1,6 +1,7 @@
 package comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.easy;
 
 import comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.bean.ListNode;
+import comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.middle.TreeNode;
 import org.junit.Test;
 
 import java.util.*;
@@ -167,6 +168,29 @@ public class EasyImplTest {
         Integer result = easy.maxProfit(new int[]{7,1,5,3,6,4});
 //        Integer result = easy.maxProfit(new int[]{1,2,3,4,5});
         System.out.println(result);
+    }
+
+    @Test
+    public void maxDepth() {
+        TreeNode treeNode = new TreeNode(3);
+
+        TreeNode treeNode1 = new TreeNode(9);
+
+        TreeNode treeNode2 = new TreeNode(20);
+
+        TreeNode treeNode3 = new TreeNode(15);
+        TreeNode treeNode4 = new TreeNode(7);
+
+//        treeNode.left = treeNode1;
+        treeNode.right = treeNode2;
+
+        treeNode2.left = treeNode3;
+        treeNode2.right = treeNode4;
+
+        EasyImpl easy = new EasyImpl();
+//        int i = easy.maxDepth(treeNode);
+        int i = easy.minDepth(treeNode);
+        System.out.println(i);
     }
 
     @Test

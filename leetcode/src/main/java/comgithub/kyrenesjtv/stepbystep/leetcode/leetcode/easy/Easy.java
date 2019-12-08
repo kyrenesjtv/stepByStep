@@ -171,6 +171,32 @@ public interface Easy {
      */
     int removeElement(int[] nums, int val);
 
+
+    /**
+     * 104. 二叉树的最大深度
+     * 给定一个二叉树，找出其最大深度。
+     *
+     * 二叉树的深度为根节点到最远叶子节点的最长路径上的节点数。
+     *
+     * 说明: 叶子节点是指没有子节点的节点。
+     * @param root
+     * @return
+     */
+     int maxDepth(TreeNode root);
+
+    /**
+     * 111. 二叉树的最小深度
+     * 给定一个二叉树，找出其最小深度。
+     *
+     * 最小深度是从根节点到最近叶子节点的最短路径上的节点数量。
+     *
+     * 说明: 叶子节点是指没有子节点的节点。
+     * @param root
+     * @return
+     */
+    int minDepth(TreeNode root);
+
+
     /**
      * 28：实现strStr()
      * 给定一个 haystack 字符串和一个 needle 字符串，在 haystack 字符串中找出 needle 字符串出现的第一个位置 (从0开始)。如果不存在，则返回  -1。

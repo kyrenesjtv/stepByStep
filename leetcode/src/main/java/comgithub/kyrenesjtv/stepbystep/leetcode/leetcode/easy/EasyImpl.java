@@ -478,6 +478,86 @@ public class EasyImpl implements Easy {
     }
 
     @Override
+    public int maxDepth(TreeNode root) {
+        //第一种方法：bfs，层数+1就是最大深度
+        /**if(root == null){
+            return 0;
+        }
+        ArrayDeque<TreeNode> queue = new ArrayDeque<>();
+        int level = 0;
+        queue.add(root);
+        while(!queue.isEmpty()){
+            int size = queue.size();
+
+            for(int i = 0 ; i < size;i++){
+                TreeNode curr = queue.removeFirst();
+                if(curr.left != null){
+                    queue.addLast(curr.left);
+                }
+                if(curr.right != null){
+                    queue.addLast(curr.right);
+                }
+            }
+            level++;
+        }
+        return level+1;*/
+
+        //第二种方法： 递归
+        /**if(root == null){
+            return 0;
+        }
+        int left = 1+ maxDepth(root.left);
+        System.out.println("左"+left);
+        int right = 1+ maxDepth(root.right);
+        System.out.println("右"+right);
+        return Math.max(left,right);*/
+
+        //第三种方法：递归优化
+        return root == null ? 0 : 1+Math.max(maxDepth(root.left),maxDepth(root.right));
+    }
+
+
+    @Override
+    public int minDepth(TreeNode root) {
+        //第一种方法：bfs，层数+1就是最大深度,当有叶子节点的时候就返回
+        /**if (root == null) {
+            return 0;
+        }
+        ArrayDeque<TreeNode> queue = new ArrayDeque<>();
+        int level = 0;
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            TreeNode curr1 = queue.peekFirst();
+            if(curr1.left == null && curr1.right == null){
+                break;
+            }
+            for (int i = 0; i < size; i++) {
+                TreeNode curr = queue.removeFirst();
+                if (curr.left != null) {
+                    queue.addLast(curr.left);
+                }
+                if (curr.right != null) {
+                    queue.addLast(curr.right);
+                }
+            }
+            level++;
+        }
+        return level + 1;*/
+
+        //第二种方法：递归
+        if(root == null){
+            return 0;
+        }
+        int left = 1+ minDepth(root.left);
+        int right = 1+ minDepth(root.right);
+        return Math.min(left,right);
+
+        //第二种方法：递归优化
+//        return root == null ? 0 : 1+Math.min(minDepth(root.left),minDepth(root.right));
+    }
+
+    @Override
     public int strStr(String haystack, String needle) {
 
         //第一种：while循环
