@@ -14,6 +14,28 @@ import java.util.*;
 public class MiddleImpl implements Middle {
 
     @Override
+    public List<String> generateParenthesis(int n) {
+        //第一种方法：递归 有n个( 和n个)。第0位必定为( 第n-1位必定为)
+        List<String> result = new ArrayList<>();
+        generateParenthesis("",result,n,n);
+        return result;
+    }
+
+    public void generateParenthesis(String s , List<String> result , int left , int right){
+        if(left == 0 && right == 0){
+            result.add(s);
+            return ;
+        }
+        if(left > 0 ){
+            generateParenthesis(s+"(",result,left-1,right);
+        }
+        //必须要先有( 再会有) 所以这边条件不能为right > 0
+        if(right > left){
+            generateParenthesis(s+")",result,left,right-1);
+        }
+    }
+
+    @Override
     public ListNode swapPairs(ListNode head) {
         //第一种解法：while
         /**if(head == null){
