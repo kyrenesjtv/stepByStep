@@ -2,6 +2,8 @@ package comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.hard;
 
 import comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.bean.ListNode;
 
+import java.util.List;
+
 /**
  * @ProjectName: stepByStep
  * @Author: AlbertW
@@ -36,6 +38,55 @@ public interface Hard {
      * @return
      */
     ListNode reverseKGroup(ListNode head, int k);
+
+
+    /**
+     * 37. 解数独（解开当前数独）
+     *
+     * 编写一个程序，通过已填充的空格来解决数独问题。
+     *
+     * 一个数独的解法需遵循如下规则：
+     *
+     * 数字 1-9 在每一行只能出现一次。
+     * 数字 1-9 在每一列只能出现一次。
+     * 数字 1-9 在每一个以粗实线分隔的 3x3 宫内只能出现一次。
+     * 空白格用 '.' 表示。
+     *
+     * @param board
+     */
+    void solveSudoku(char[][] board);
+
+
+
+    /**
+     * 51:N皇后问题(横竖不能互相碰到)
+     *
+     * n 皇后问题研究的是如何将 n 个皇后放置在 n×n 的棋盘上，并且使皇后彼此之间不能相互攻击。
+     *
+     * 给定一个整数 n，返回所有不同的 n 皇后问题的解决方案。
+     *
+     * 每一种解法包含一个明确的 n 皇后问题的棋子放置方案，该方案中 'Q' 和 '.' 分别代表了皇后和空位。
+     *
+     * 示例:
+     *
+     * 输入: 4
+     * 输出: [
+     *  [".Q..",  // 解法 1
+     *   "...Q",
+     *   "Q...",
+     *   "..Q."],
+     *
+     *  ["..Q.",  // 解法 2
+     *   "Q...",
+     *   "...Q",
+     *   ".Q.."]
+     * ]
+     * 解释: 4 皇后问题存在两个不同的解法。
+     *
+     * @param n
+     * @return
+     */
+    List<List<String>> solveNQueens(int n);
 
 
 }

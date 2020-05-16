@@ -3,6 +3,8 @@ package comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.hard;
 import comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.bean.ListNode;
 import org.junit.Test;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 /**
@@ -31,5 +33,15 @@ public class HardImplTest {
         HardImpl hard = new HardImpl();
         ListNode listNode = hard.reverseKGroup(listNode1, 3);
         System.out.println("1111");
+    }
+
+
+    @Test
+    public void solveNQueens() {
+
+        HardImpl hard = new HardImpl();
+        List<List<String>> lists = hard.solveNQueens(4);
+        System.out.println(lists);
+
     }
 }

@@ -69,6 +69,54 @@ public class MiddleImpl implements Middle {
     }
 
     @Override
+    public boolean isValidSudoku(char[][] board) {
+        if(board == null || board.length == 0){
+            return false;
+        }
+       return solveSudokuRecursion(board);
+    }
+    private boolean solveSudokuRecursion(char[][] board) {
+        for(int i = 0 ; i<board.length;i++){
+            for(int j = 0 ; j<board[0].length;j++ ){
+                //是空的
+                if(board[i][j] == '.'){
+                    for(char c = '1'; c<='9';c++){
+                        //判断C是否能放入当前位置
+                        if(isValid(board,i,j,c)){
+                            board[i][j] = c;
+                            if(solveSudokuRecursion(board)){
+                                return true;
+                            }else {
+                                // 当前的C不是正确的C
+                                board[i][j] = '.';
+                            }
+                        }
+                    }
+                }
+                return false;
+            }
+        }
+        return true;
+    }
+    private boolean isValid(char[][] board, int row, int col,char cur) {
+        for(int i = 0 ; i<9 ;i++){
+            //判断y
+            if(board[i][col] != '.' && board[i][col] == cur){
+                return false;
+            }
+            //判断x
+            if(board[row][i] != '.' && board[row][i] == cur){
+                return false;
+            }
+            //判断九宫格 3*(row/3)--》 确定大坐标。 第一象限 x轴/3 ，y轴%3
+            if(board[3*(row/3)+i/3][3*(col/3)+i%3] != '.' && board[3*(row/3)+i/3][3*(col/3)+i%3] == cur){
+                return false;
+            }
+
+        }
+        return true;
+    }
+    @Override
     public double myPow(double x, int n) {
 
         //第一种方法：调用MATH

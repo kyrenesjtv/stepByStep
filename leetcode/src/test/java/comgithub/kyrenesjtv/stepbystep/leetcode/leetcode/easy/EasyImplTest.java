@@ -5,6 +5,7 @@ import comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.middle.TreeNode;
 import org.junit.Test;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 import static org.junit.Assert.*;
 
@@ -14,6 +15,13 @@ import static org.junit.Assert.*;
  * @CreateDate: 2019/7/22 17:46
  */
 public class EasyImplTest {
+
+    @Test
+    public void test01() {
+        String aa = "/app/login";
+        int i = aa.indexOf("/app");
+        System.out.println("aaa");
+    }
 
     @Test
     public void twoSum() {
@@ -193,12 +201,6 @@ public class EasyImplTest {
         System.out.println(i);
     }
 
-    @Test
-    public void test01() {
-        String aa = "2019-09-16 15:00:00";
-        String substring = aa.substring(0, 10);
-        System.out.println("1111");
-    }
 
     private static void insertionSort(List<Integer> a, int n) {
         if (n <= 0) {
