@@ -478,6 +478,36 @@ public class EasyImpl implements Easy {
     }
 
     @Override
+    public int mySqrt(int x) {
+        //第一种解法：2分查找
+//        if(x == 0 || x == 1 ){
+//            return  x;
+//        }
+//        int left = 1 ,right = x ,res = 0;
+//        while(left <= right){
+//            int mid = (left + right)/2;
+//            if(mid == x /mid){
+//                return mid;
+//            }else if(mid > x /mid){
+//                right = mid-1;
+//            }else{
+//                left = mid+1;
+//                res = mid;
+//            }
+//        }
+//        return res;
+        //第二种解法：牛顿迭代法
+        if(x == 0 || x == 1 ){
+            return  x;
+        }
+        int result = x;
+        while(result * result > x){
+            result = (result + x/result)/2;
+        }
+        return result;
+    }
+
+    @Override
     public int maxDepth(TreeNode root) {
         //第一种方法：bfs，层数+1就是最大深度
         /**if(root == null){
