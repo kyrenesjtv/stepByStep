@@ -18,9 +18,20 @@ public class EasyImplTest {
 
     @Test
     public void test01() {
-        String aa = "/app/login";
-        int i = aa.indexOf("/app");
-        System.out.println("aaa");
+        //链表反转
+        ListNode listNode = new ListNode(2);
+        if(listNode == null){
+            return ;
+        }// 1 2 3 4 5
+        ListNode curr = listNode;// 123
+        ListNode pre = null;//
+        ListNode next = null;//
+        while(curr != null){
+            next = curr.next;//next 23。3。next null
+            curr.next = pre;//curr 1 next 23。curr 21 next 3。curr 321,next null
+            pre=curr;//pre 1 。pre 21。 pre 321
+            curr=next;//curr 23。curr 3。curr null
+        }
     }
 
     @Test

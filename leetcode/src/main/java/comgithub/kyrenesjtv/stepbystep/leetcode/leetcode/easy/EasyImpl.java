@@ -803,11 +803,19 @@ public class EasyImpl implements Easy {
          return result;*/
 
         //第三种：递归
-        ListNode last = head; // 1 2 3 n
+        /**ListNode last = head; // 1 2 3 n
         ListNode current = last.next;// 2 3 n
         ListNode result = recursionReverseList(head, current, last);
-        return result;
+        return result;*/
 
+        //第四中：递归2
+        if(head==null || head.next ==null){//12345
+            return head;
+        }
+        ListNode curr = reverseList(head.next);//curr 返回的一直5
+        head.next.next=head;//head.next = 5 即为 5.null = 4 5 结果 5.4.5.null
+        head.next =null;//结果由 5.4.5变成5.4 null
+        return curr;
     }
 
     @Override
