@@ -27,7 +27,7 @@ public class MergeSort {
         //分解数
         int mid = n / 2;
         int[] left = Arrays.copyOfRange(sort, 0, mid);
-        int[] right = Arrays.copyOfRange(sort, mid, n);
+        int[] right = Arrays.copyOfRange(sort, mid-1, n);
 
         //递归继续分解
         left = MergeSort(left, left.length);
@@ -79,5 +79,63 @@ public class MergeSort {
 
         return tempSort;
     }
+
+    public void merge(int[] a , int n) {
+        //归并
+        merge_sort_c(a, 0, n-1);
+
+    }
+
+    private int[] merge_sort_c(int[] a, int s, int e) {
+        if(e<=s){
+            return new int[0];
+        }
+
+        int m = (s+e)/2;
+        int[] lefts = Arrays.copyOfRange(a, s, m - 1);
+        int[] rights = Arrays.copyOfRange(a, m, e);
+        int[] left = merge_sort_c(lefts, s, m - 1);
+        int[] right = merge_sort_c(rights, m, e);
+        return merge_sort(left,right);
+    }
+
+    private int[] merge_sort(int[] left, int[] right) {
+        if(left == null || left.length == 0){
+            return new int[0];
+        }
+        if(right == null || right.length == 0){
+            return new int[0];
+        }
+        int leftL = left.length;
+        int rightL = right.length;
+        int[] ints = new int[ leftL+ rightL];
+        int a =0,b=0,c=0;
+        while(a < leftL && b<rightL){
+            if(left[a]> right[b]){
+                ints[c] = right[b];
+                b++;
+            }else{
+                ints[c] = right[a];
+                a++;
+            }
+            c++;
+        }
+        if(a < leftL ){
+            while(a < leftL){
+                ints[c] = right[a];
+                a++;
+                c++;
+            }
+        }else{
+            while(b < rightL){
+                ints[c] = right[b];
+                b++;
+                c++;
+            }
+        }
+        return ints;
+    }
+
+
 
 }
