@@ -18,20 +18,90 @@ public class EasyImplTest {
 
     @Test
     public void test01() {
-        //链表反转
-        ListNode listNode = new ListNode(2);
-        if(listNode == null){
-            return ;
-        }// 1 2 3 4 5
-        ListNode curr = listNode;// 123
-        ListNode pre = null;//
-        ListNode next = null;//
-        while(curr != null){
-            next = curr.next;//next 23。3。next null
-            curr.next = pre;//curr 1 next 23。curr 21 next 3。curr 321,next null
-            pre=curr;//pre 1 。pre 21。 pre 321
-            curr=next;//curr 23。curr 3。curr null
+        //归并
+        int[] a = new int[]{5,4,7,9,6,4,6,3,7,8};
+        quick_sort_c(a, 0, a.length-1);
+        System.out.println("111");
+    }
+
+    private void quick_sort_c(int[] a, int s, int e) {
+        if(s>e){
+            return;
         }
+        int i = s,j=e;
+
+        int temp = a[s];
+        while(i < j){
+            while(a[j]>=temp && i < j){
+                j--;
+            }
+            while(a[i]<=temp && i < j){
+                i++;
+            }
+
+            //交换位置
+            if(i < j){
+                int i1 = a[i];
+                a[i] = a[j];
+                a[j] = i1;
+            }
+        }
+        a[s] = a[i];
+        a[i] = temp;
+
+
+        quick_sort_c(a,s,j-1);
+        quick_sort_c(a,j+1,e);
+    }
+
+    private int[] merge_sort_c(int[] a, int s, int e) {
+        if(e<=s){
+            return new int[0];
+        }
+
+        int m = (s+e)/2;
+        int[] lefts = Arrays.copyOfRange(a, s, m - 1);
+        int[] rights = Arrays.copyOfRange(a, m, e);
+        int[] left = merge_sort_c(lefts, s, m - 1);
+        int[] right = merge_sort_c(rights, m, e);
+        return merge_sort(left,right);
+    }
+
+    private int[] merge_sort(int[] left, int[] right) {
+        if(left == null || left.length == 0){
+            return new int[0];
+        }
+        if(right == null || right.length == 0){
+            return new int[0];
+        }
+        int leftL = left.length;
+        int rightL = right.length;
+        int[] ints = new int[ leftL+ rightL];
+        int a =0,b=0,c=0;
+        while(a < leftL && b<rightL){
+            if(left[a]> right[b]){
+                ints[c] = right[b];
+                b++;
+            }else{
+                ints[c] = right[a];
+                a++;
+            }
+            c++;
+        }
+        if(a < leftL ){
+            while(a < leftL){
+                ints[c] = right[a];
+                a++;
+                c++;
+            }
+        }else{
+            while(b < rightL){
+                ints[c] = right[b];
+                b++;
+                c++;
+            }
+        }
+        return ints;
     }
 
     @Test
