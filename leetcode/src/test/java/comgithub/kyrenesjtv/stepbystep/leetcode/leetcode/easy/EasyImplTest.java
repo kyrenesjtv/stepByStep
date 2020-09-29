@@ -20,12 +20,54 @@ public class EasyImplTest {
     @Test
     public void test01() {
         //归并
-        int[] a = new int[]{5,4,7,9,6,4,6,3,7,8,0,1,2,3,9,8,7,6,5,4,4,3,2};
+        int[] a = new int[]{9,101,103,5,13,7,19,257,15,1,3,17};
 //        quick_sort_c(a, 0, a.length-1);
 //        bucketSort(a);
-        countingSort(a,a.length);
-        System.out.println("111");
+//        countingSort(a,a.length);
+        radixSort(a,3);
+        System.out.println(Math.pow(10,0));
     }
+
+    /**
+     *
+     * @param a
+     * @param max 数据最大的是几位数
+     */
+    private void radixSort(int[] a, int max) {
+        int length = a.length;
+        int[] temp = new int[length];
+        int[] bucket = new int[length];
+
+        //判断位数
+        for(int i = 1 ; i<= max; i++){
+            //清空
+            for(int j = 0 ; j< length ; j++){
+                temp[j] = 0;
+            }
+            //判断位数上之前别分有几个
+            for(int j = 0 ; j <length ; j++){
+                temp[getFigure(a[j],i)]++;
+            }
+            for(int j = 1 ; j <length;j++){
+                temp[j] = temp[j]+temp[j-1];
+            }
+            //类似计数排序的精髓
+            for(int j = length-1 ; j>=0;j--){
+                bucket[temp[getFigure(a[j],i)]-1] = a[j];
+                temp[getFigure(a[j],i)]--;
+            }
+            //赋值
+            for(int j = 0 ; j< length ; j++){
+                a[j] = bucket[j];
+            }
+        }
+
+    }
+
+    private int getFigure(int i, int k) {
+        return (i/new Double(Math.pow(10, k - 1)).intValue())%10;
+    }
+
 
     private void countingSort(int[] a, int length) {
         if(length < 1){
