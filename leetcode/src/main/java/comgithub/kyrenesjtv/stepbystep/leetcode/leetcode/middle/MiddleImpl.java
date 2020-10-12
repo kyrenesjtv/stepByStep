@@ -75,6 +75,44 @@ public class MiddleImpl implements Middle {
         }
        return solveSudokuRecursion(board);
     }
+
+    @Override
+    public int search(int[] nums, int target) {
+        if(nums.length == 0){
+            return -1;
+        }
+        if(nums.length==1){
+            return nums[0] == target?0:-1;
+        }
+        int s = 0,e=nums.length-1;
+        while (s<=e){
+            int m = s+((e-s)>>1);
+            if(nums[m]== target){
+                return m;
+            }else{
+                //s-m为有序数组
+                if(nums[s] <= nums[m]){
+                    if(nums[s]<=target && target< nums[m]){
+                        e = m-1;
+                    }else{
+                        //target在 m-e
+                        s = m+1;
+                    }
+                }else {
+                    //m-e为有序数组
+                    if(nums[m]<target && target<=nums[e]){
+                        s = m+1;
+                    }else{
+                        //target 在s-m
+                        e = m-1;
+                    }
+
+                }
+            }
+        }
+        return -1;
+    }
+
     private boolean solveSudokuRecursion(char[][] board) {
         for(int i = 0 ; i<board.length;i++){
             for(int j = 0 ; j<board[0].length;j++ ){
