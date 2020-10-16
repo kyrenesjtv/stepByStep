@@ -475,10 +475,12 @@ public class MiddleImpl implements Middle {
             child = null;
         }
 
-        if(pp.left == p){
-            pp.left = child;
+        if(pp == null){ //删除的是根节点
+            root = child;
         }else if(pp.right == p){
             pp.right = child;
+        }else {
+            pp.left = child;
         }
 
         return root;
