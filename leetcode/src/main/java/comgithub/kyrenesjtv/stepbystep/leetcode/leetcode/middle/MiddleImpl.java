@@ -431,6 +431,58 @@ public class MiddleImpl implements Middle {
         return q;
     }
 
+    @Override
+    public TreeNode1 deleteNode(TreeNode1 root, int key) {
+        //第一种方法：迭代
+        if(root == null){
+            return new TreeNode1();
+        }
+        TreeNode1 p = root;
+        TreeNode1 pp = null;
+        while(p != null && p.val != key){
+            pp = p;
+            if(root.left.val < key){
+                p = root.right;
+            }else {
+                p = root.left;
+            }
+        }
+        //没有找到
+        if(p == null){
+            return root;
+        }
+        // 要删除的节点有两个子节点
+        if(p.left != null && p.right != null){
+            //找到右子树中的最小的节点
+            TreeNode1 minp = p.right;
+            TreeNode1 minpp = p;
+            while(minp.left != null){
+                minp = minp.left;
+                minpp = minp;
+            }
+            //接下来就是只要删除p就行了
+            p.val = minp.val;
+            p = minp;
+            pp = minpp;
+        }
+        //删除节点是叶子节点或者仅有一个子节点
+        TreeNode1 child = null;
+        if(p.left != null){
+            child = p.left;
+        }else if(p.right != null){
+            child = p.right;
+        }else{
+            child = null;
+        }
+
+        if(pp.left == p){
+            pp.left = child;
+        }else if(pp.right == p){
+            pp.right = child;
+        }
+
+        return root;
+    }
 
 
     private boolean isValidBSTHelper1(TreeNode node, Integer left, Integer right) {
