@@ -20,14 +20,34 @@ public class EasyImplTest {
     @Test
     public void test01() {
         //归并
-        int[] a = new int[]{3,4,6,7,10};
+        char[] a = new char[]{'a','b','a','b','a','c','d'};
 //        quick_sort_c(a, 0, a.length-1);
 //        bucketSort(a);
 //        countingSort(a,a.length);
 //        radixSort(a,3);
-        int i = binarySearch5(a,a.length, 5);
+//        int i = binarySearch5(a,a.length, 5);
+        getNexts(a,7);
         System.out.println(3+(4-3)>>1);
     }
+
+
+    // b表示模式串，m表示模式串的长度
+    private static int[] getNexts(char[] b, int m) {
+        int[] next = new int[m];
+        next[0] = -1;
+        int k = -1;
+        for (int i = 1; i < m; ++i) {
+            while (k != -1 && b[k + 1] != b[i]) {
+                k = next[k];
+            }
+            if (b[k + 1] == b[i]) {
+                ++k;
+            }
+            next[i] = k;
+        }
+        return next;
+    }
+
 
     /**
      * 查找最后一个值小于等于给定值的元素
