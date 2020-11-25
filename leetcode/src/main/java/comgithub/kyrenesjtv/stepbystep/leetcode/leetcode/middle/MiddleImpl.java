@@ -432,6 +432,39 @@ public class MiddleImpl implements Middle {
     }
 
     @Override
+    public String removeKdigits(String num, int k) {
+
+        //第一种方法：while，
+        Deque<Character> deque = new LinkedList<>();
+        int length = num.length();
+        for(int i = 0 ; i < length ; i++){
+            char c = num.charAt(i);
+            if(!deque.isEmpty() && k >0 && deque.peekLast() > c){
+                deque.pollLast();
+                k--;
+            }
+            deque.offerLast(c);
+        }
+
+        for(int i = 0 ; i <k ; i++){
+            deque.pollLast();
+        }
+        boolean isFirst = true;
+        StringBuffer stringBuffer = new StringBuffer();
+        while (!deque.isEmpty()){
+            Character character = deque.pollFirst();
+            if(isFirst && character == '0'){
+                isFirst = false;
+                continue;
+            }
+            stringBuffer.append(character);
+        }
+
+
+        return stringBuffer.length() == 0?"0":stringBuffer.toString();
+    }
+
+    @Override
     public TreeNode1 deleteNode(TreeNode1 root, int key) {
         //第一种方法：迭代
         if(root == null){

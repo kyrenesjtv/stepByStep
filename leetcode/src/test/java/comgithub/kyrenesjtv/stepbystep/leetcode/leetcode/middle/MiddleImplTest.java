@@ -23,6 +23,13 @@ public class MiddleImplTest {
     }
 
     @Test
+    public void removeKdigits() {
+        String s = MIDDLE.removeKdigits("1432219", 3);
+        System.out.println("11");
+    }
+
+
+    @Test
     public void detectCycle() {
     }
 
