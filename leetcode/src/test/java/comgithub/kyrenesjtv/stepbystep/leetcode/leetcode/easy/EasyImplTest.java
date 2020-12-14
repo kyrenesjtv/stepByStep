@@ -1,6 +1,7 @@
 package comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.easy;
 
 import comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.bean.ListNode;
+import comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.bean.Point;
 import comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.middle.TreeNode;
 import org.junit.Test;
 
@@ -19,15 +20,81 @@ public class EasyImplTest {
 
     @Test
     public void test01() {
-        //归并
-        char[] a = new char[]{'a','b','a','b','a','c','d'};
-//        quick_sort_c(a, 0, a.length-1);
-//        bucketSort(a);
-//        countingSort(a,a.length);
-//        radixSort(a,3);
-//        int i = binarySearch5(a,a.length, 5);
-        getNexts(a,7);
-        System.out.println(3+(4-3)>>1);
+         LinkedList<Integer> adj[] = new LinkedList[5];
+        for (int i = 0; i < 5; ++i) {
+            adj[i] = new LinkedList<>();
+        }
+        adj[3].add(3);
+        adj[3].add(4);
+        System.out.println(11);
+    }
+
+    private static Point[] getMinPoint(List<Point> listPoint){
+        if(listPoint.size()==1|listPoint.size()==0) {
+            return null;
+        }
+        //对listPoint 按照x坐标由小变大,在由y从小变大
+        //do something
+
+        int left = 0 ,right = listPoint.size();
+        Point[] minIndex = getMinPointByMerge(listPoint,left,right);
+        return minIndex;
+    }
+
+    private static Point[] getMinPointByMerge(List<Point> listPoint, int left, int right) {
+        Double minDistance = getMinDistance(listPoint.get(0), listPoint.get(1));
+        Point[] result = new Point[2];
+        result[0] = listPoint.get(0);
+        result[1] = listPoint.get(1);
+        if(right - left <=4){
+            List<Point> newList = new ArrayList<Point>();
+            newList.addAll(listPoint.subList(left,right));
+             result = getNexts(listPoint);
+        }else{
+            Point[] leftPoint = getMinPointByMerge(listPoint, left, (left + right) / 2);
+            Point[] rightPoint = getMinPointByMerge(listPoint, (left + right)/2 +1,right);
+            Double leftMin = getMinDistance(leftPoint[0], leftPoint[1]);
+            Double rightMin = getMinDistance(rightPoint[0], rightPoint[1]);
+            if(leftMin <= rightMin){
+                result = leftPoint;
+                minDistance = leftMin;
+            }else{
+                result = rightPoint;
+                minDistance = rightMin;
+            }
+            //根据鹊巢原理，中间点位只会出现在中间6个（可以加上x y都是int ，然后自己模拟一下）
+            if(listPoint.size() > 6){
+                List<Point> newList = new ArrayList<Point>();
+                newList.addAll(listPoint.subList((left + right) / 2-3,(left + right) / 2+3));
+                result = getNexts(newList);
+            }else {
+                result = getNexts(listPoint);
+            }
+        }
+        return result;
+    }
+
+
+    private static Point[] getNexts(List<Point> listPoint) {
+        Point[] result = new Point[2];
+        Double minDistance = getMinDistance(listPoint.get(0), listPoint.get(1));
+        result[0] = listPoint.get(0);
+        result[1] = listPoint.get(1);
+        for(int i = 1; i<listPoint.size() -1; i++){
+            for(int j = i+1 ; j<listPoint.size() ; j++){
+                Double minDistance1 = getMinDistance(listPoint.get(i), listPoint.get(j));
+                if(minDistance1 < minDistance){
+                    result[0] = listPoint.get(i);
+                    result[1] = listPoint.get(j);
+                }
+            }
+        }
+        return result;
+    }
+
+    private static Double getMinDistance(Point x , Point y){
+        double dis=Math.sqrt(Math.pow(x.getX()-y.getX(), 2)+Math.pow(x.getY()-y.getY(), 2));
+        return dis;
     }
 
 
