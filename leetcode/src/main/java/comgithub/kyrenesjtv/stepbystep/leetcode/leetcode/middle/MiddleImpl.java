@@ -113,6 +113,46 @@ public class MiddleImpl implements Middle {
         return -1;
     }
 
+    @Override
+    public List<List<String>> groupAnagrams(String[] strs) {
+
+        //第一种方法：排序
+        /**Map<String, List<String>> map = new HashMap<String, List<String>>();
+        for(String str : strs){
+            char[] chars = str.toCharArray();
+            Arrays.sort(chars);
+            String s = new String(chars);
+            List<String> orDefault = map.getOrDefault(s, new ArrayList<String>());
+            orDefault.add(str);
+            map.put(s,orDefault);
+        }
+        return new ArrayList<List<String>>(map.values());*/
+
+
+        //第二种方法：计数
+        Map<String, List<String>> map = new HashMap<String, List<String>>();
+        for(String str : strs){
+            int[] ints = new int[26];
+            for(int i = 0 ; i< str.length() ; i++){
+                ints[str.charAt(i) - 'a']++;
+            }
+            //拼接
+            StringBuffer stringBuffer = new StringBuffer();
+            for(int i = 0 ; i <26 ;i++){
+                if(ints[i] != 0){
+                    stringBuffer.append(i+'a');
+                    stringBuffer.append(ints[i]);
+                }
+            }
+            String s = stringBuffer.toString();
+            List<String> orDefault = map.getOrDefault(s, new ArrayList<String>());
+            orDefault.add(str);
+            map.put(s,orDefault);
+        }
+        return new ArrayList<List<String>>(map.values());
+
+    }
+
     private boolean solveSudokuRecursion(char[][] board) {
         for(int i = 0 ; i<board.length;i++){
             for(int j = 0 ; j<board[0].length;j++ ){
