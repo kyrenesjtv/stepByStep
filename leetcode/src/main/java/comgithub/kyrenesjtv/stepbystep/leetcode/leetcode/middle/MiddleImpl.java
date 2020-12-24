@@ -242,6 +242,43 @@ public class MiddleImpl implements Middle {
 
     }
 
+    private boolean existwordFlag = false;
+    @Override
+    public boolean exist(char[][] board, String word) {
+
+        //第一种解法：回溯
+        int m = board.length;
+        int n = board[0].length;
+        boolean[][] visited = new boolean[m][n];
+        boolean result = false;
+        for(int i = 0 ; i < m ; i ++){
+            for(int j = 0 ; j <n ; j++){
+                 exist_dfs(board, visited, i, j, word, 0);
+                 if(existwordFlag){
+                     return true;
+                 }
+            }
+        }
+        return existwordFlag;
+    }
+
+    private void exist_dfs(char[][] board, boolean[][] visited, int m, int n, String word,int index) {
+        if(m < 0 || m >= board.length || n< 0 || n >= board[0].length
+                || visited[m][n] || board[m][n] != word.charAt(index)){
+            return ;
+        }
+        visited[m][n] = true;
+        if(index == word.length() -1){
+            existwordFlag = true;
+            return;
+        }
+        exist_dfs(board,visited,m-1,n,word,index+1);
+        exist_dfs(board,visited,m+1,n,word,index+1);
+        exist_dfs(board,visited,m,n-1,word,index+1);
+        exist_dfs(board,visited,m,n+1,word,index+1);
+        visited[m][n] = false;
+    }
+
     @Override
     public List<List<Integer>> levelOrder(TreeNode root) {
 

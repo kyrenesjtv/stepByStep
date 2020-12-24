@@ -22,6 +22,14 @@ public class MiddleImplTest {
         MIDDLE = new MiddleImpl();
     }
 
+
+    @Test
+    public void exist() {
+        char[][] board = {{'A','B','C','E'},{'S','F','C','S'},{'A','D','E','E'}};
+        Boolean s = MIDDLE.exist(board,"ABCCED");
+        System.out.println("11");
+    }
+
     @Test
     public void removeKdigits() {
         String s = MIDDLE.removeKdigits("1432219", 3);
