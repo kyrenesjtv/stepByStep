@@ -113,6 +113,46 @@ public class MiddleImpl implements Middle {
         return -1;
     }
 
+    @Override
+    public List<List<String>> groupAnagrams(String[] strs) {
+
+        //第一种方法：排序
+        /**Map<String, List<String>> map = new HashMap<String, List<String>>();
+        for(String str : strs){
+            char[] chars = str.toCharArray();
+            Arrays.sort(chars);
+            String s = new String(chars);
+            List<String> orDefault = map.getOrDefault(s, new ArrayList<String>());
+            orDefault.add(str);
+            map.put(s,orDefault);
+        }
+        return new ArrayList<List<String>>(map.values());*/
+
+
+        //第二种方法：计数
+        Map<String, List<String>> map = new HashMap<String, List<String>>();
+        for(String str : strs){
+            int[] ints = new int[26];
+            for(int i = 0 ; i< str.length() ; i++){
+                ints[str.charAt(i) - 'a']++;
+            }
+            //拼接
+            StringBuffer stringBuffer = new StringBuffer();
+            for(int i = 0 ; i <26 ;i++){
+                if(ints[i] != 0){
+                    stringBuffer.append(i+'a');
+                    stringBuffer.append(ints[i]);
+                }
+            }
+            String s = stringBuffer.toString();
+            List<String> orDefault = map.getOrDefault(s, new ArrayList<String>());
+            orDefault.add(str);
+            map.put(s,orDefault);
+        }
+        return new ArrayList<List<String>>(map.values());
+
+    }
+
     private boolean solveSudokuRecursion(char[][] board) {
         for(int i = 0 ; i<board.length;i++){
             for(int j = 0 ; j<board[0].length;j++ ){
@@ -200,6 +240,43 @@ public class MiddleImpl implements Middle {
 
 
 
+    }
+
+    private boolean existwordFlag = false;
+    @Override
+    public boolean exist(char[][] board, String word) {
+
+        //第一种解法：回溯
+        int m = board.length;
+        int n = board[0].length;
+        boolean[][] visited = new boolean[m][n];
+        boolean result = false;
+        for(int i = 0 ; i < m ; i ++){
+            for(int j = 0 ; j <n ; j++){
+                 exist_dfs(board, visited, i, j, word, 0);
+                 if(existwordFlag){
+                     return true;
+                 }
+            }
+        }
+        return existwordFlag;
+    }
+
+    private void exist_dfs(char[][] board, boolean[][] visited, int m, int n, String word,int index) {
+        if(m < 0 || m >= board.length || n< 0 || n >= board[0].length
+                || visited[m][n] || board[m][n] != word.charAt(index)){
+            return ;
+        }
+        visited[m][n] = true;
+        if(index == word.length() -1){
+            existwordFlag = true;
+            return;
+        }
+        exist_dfs(board,visited,m-1,n,word,index+1);
+        exist_dfs(board,visited,m+1,n,word,index+1);
+        exist_dfs(board,visited,m,n-1,word,index+1);
+        exist_dfs(board,visited,m,n+1,word,index+1);
+        visited[m][n] = false;
     }
 
     @Override

@@ -78,6 +78,31 @@ public interface Middle {
      */
     public int search(int[] nums, int target);
 
+
+    /**
+     * 49. 字母异位词分组
+     *
+     * 给定一个字符串数组，将字母异位词组合在一起。字母异位词指字母相同，但排列不同的字符串。
+     *
+     * 示例:
+     *
+     * 输入: ["eat", "tea", "tan", "ate", "nat", "bat"]
+     * 输出:
+     * [
+     *   ["ate","eat","tea"],
+     *   ["nat","tan"],
+     *   ["bat"]
+     * ]
+     * 说明：
+     *
+     * 所有输入均为小写字母。
+     * 不考虑答案输出的顺序
+     *
+     * @param strs
+     * @return
+     */
+    List<List<String>> groupAnagrams(String[] strs);
+
     /**
      * 59:pow
      * 实现 pow(x, n) ，即计算 x 的 n 次幂函数。 x可以为正负数
@@ -86,6 +111,46 @@ public interface Middle {
      * @return
      */
     double myPow(double x, int n);
+
+
+    /**
+     *
+     * 79. 单词搜索
+     *
+     * 给定一个二维网格和一个单词，找出该单词是否存在于网格中。
+     *
+     * 单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母不允许被重复使用。
+     *
+     *  
+     *
+     * 示例:
+     *
+     * board =
+     * [
+     *   ['A','B','C','E'],
+     *   ['S','F','C','S'],
+     *   ['A','D','E','E']
+     * ]
+     *
+     * 给定 word = "ABCCED", 返回 true
+     * 给定 word = "SEE", 返回 true
+     * 给定 word = "ABCB", 返回 false
+     *  
+     *
+     * 提示：
+     *
+     * board 和 word 中只包含大写和小写英文字母。
+     * 1 <= board.length <= 200
+     * 1 <= board[i].length <= 200
+     * 1 <= word.length <= 10^3
+     *
+     *
+     * @param board
+     * @param word
+     * @return
+     */
+    boolean exist(char[][] board, String word);
+
 
     /**
      * 102:给定一个二叉树，返回其按层次遍历的节点值。 （即逐层地，从左到右访问所有节点）。
