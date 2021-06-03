@@ -20,6 +20,7 @@ public class UserController {
     //retries：重试次数 timeout：超时时间 loadbalance：负载均衡策略
     //version：版本号 mock：服务降级
     // parameters = {"sayHello.timeout", "3000", "sayHello2.timeout", "5000"} 针对方法级别
+    //group 多个实现类区分
     @Reference(interfaceClass = UserSerrvice.class)
     private UserSerrvice userSerrvice;
 
