@@ -11,6 +11,9 @@
         <module>leetcode</module>
         <module>jdk8</module>
         <module>demodataDesignAndArithmetic</module>
+        <module>boot-dubbo-consumer</module>
+        <module>boot-dubbo-interferce</module>
+        <module>boot-dubbo-provider</module>
     </modules>
 
 </project>
