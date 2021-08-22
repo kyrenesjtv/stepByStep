@@ -1,4 +1,4 @@
-package com.github.kyrenesjtv.multithread.test;
+package com.github.kyrenesjtv.multithread.geektime;
 
 import java.util.ArrayList;
 import java.util.List;

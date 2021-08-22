@@ -14,6 +14,7 @@
         <module>boot-dubbo-consumer</module>
         <module>boot-dubbo-interferce</module>
         <module>boot-dubbo-provider</module>
+        <module>multithread</module>
     </modules>
 
 </project>
