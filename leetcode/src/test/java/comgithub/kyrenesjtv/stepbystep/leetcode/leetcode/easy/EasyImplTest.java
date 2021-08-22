@@ -5,11 +5,13 @@ import comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.bean.Point;
 import comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.middle.TreeNode;
 import org.junit.Test;
 
-import java.lang.reflect.Array;
-import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
-
-import static org.junit.Assert.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * @ProjectName: stepByStep
@@ -18,9 +20,108 @@ import static org.junit.Assert.*;
  */
 public class EasyImplTest {
 
+
+    @Test
+    public void test02() {
+        int dataZ = 54321;
+        // 每500条数据开启一条线程
+        int threadSize = dataZ / 7;
+        // 总数据条数
+        int dataSize = dataZ;
+        // 线程数
+        int threadNum = dataSize / threadSize + 1;
+        System.out.println();
+
+    }
+
+
+    @Test
+    public void getRebatePlanAmount() {
+        long startTime = System.currentTimeMillis();
+        List<String> list = new ArrayList<String>();
+
+        for (int i = 1; i <= 300000; i++) {
+            list.add(i + "");
+        }
+        // 每500条数据开启一条线程
+        int threadSize = 500;
+        // 总数据条数
+        int dataSize = list.size();
+        // 线程数
+        int threadNum = dataSize / threadSize + 1;
+        // 定义标记,过滤threadNum为整数
+        boolean special = dataSize % threadSize == 0;
+
+        // 创建一个线程池
+        ExecutorService exec = Executors.newFixedThreadPool(threadNum);
+        // 定义一个任务集合
+        List<Callable<Boolean>> tasks = new ArrayList<Callable<Boolean>>();
+        Callable<Boolean> task = null;
+        List<String> cutList = null;
+
+        // 确定每条线程的数据
+        for (int i = 0; i < threadNum; i++) {
+            if (i == threadNum - 1) {
+                if (special) {
+                    break;
+                }
+                cutList = list.subList(threadSize * i, dataSize);
+            } else {
+                cutList = list.subList(threadSize * i, threadSize * (i + 1));
+            }
+            final List<String> listStr = cutList;
+            task = new Callable<Boolean>() {
+                @Override
+                public Boolean call() throws Exception {
+                    if (null != listStr && listStr.size() > 0) {
+                        for (String str : listStr) {
+                            // 调用业务方法
+                            downloadFile(str);
+                        }
+                    }
+                    return true;
+                }
+            };
+            tasks.add(task);
+        }
+
+        try {
+            exec.invokeAll(tasks);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        // 关闭线程池
+        exec.shutdown();
+        long endTime = System.currentTimeMillis();
+        long diff = endTime - startTime;
+        System.out.println("执行时间：" + diff);
+    }
+
+    private static void downloadFile(String str) {
+        //执行多线程文件下载业务逻辑
+        System.out.println(str);
+    }
+
+    @Test
+    public void getRebatePlanAmount1() {
+        long startTime = System.currentTimeMillis();
+        List<String> list = new ArrayList<String>();
+
+        for (int i = 1; i <= 300000; i++) {
+            list.add(i + "");
+        }
+        for (String s : list) {
+            System.out.println(s);
+        }
+        long endTime = System.currentTimeMillis();
+        long diff = endTime - startTime;
+        System.out.println("执行时间：" + diff);
+
+    }
+
     @Test
     public void test01() {
-         LinkedList<Integer> adj[] = new LinkedList[5];
+        LinkedList<Integer> adj[] = new LinkedList[5];
         for (int i = 0; i < 5; ++i) {
             adj[i] = new LinkedList<>();
         }
@@ -29,15 +130,15 @@ public class EasyImplTest {
         System.out.println(11);
     }
 
-    private static Point[] getMinPoint(List<Point> listPoint){
-        if(listPoint.size()==1|listPoint.size()==0) {
+    private static Point[] getMinPoint(List<Point> listPoint) {
+        if (listPoint.size() == 1 | listPoint.size() == 0) {
             return null;
         }
         //对listPoint 按照x坐标由小变大,在由y从小变大
         //do something
 
-        int left = 0 ,right = listPoint.size();
-        Point[] minIndex = getMinPointByMerge(listPoint,left,right);
+        int left = 0, right = listPoint.size();
+        Point[] minIndex = getMinPointByMerge(listPoint, left, right);
         return minIndex;
     }
 
@@ -46,28 +147,28 @@ public class EasyImplTest {
         Point[] result = new Point[2];
         result[0] = listPoint.get(0);
         result[1] = listPoint.get(1);
-        if(right - left <=4){
+        if (right - left <= 4) {
             List<Point> newList = new ArrayList<Point>();
-            newList.addAll(listPoint.subList(left,right));
-             result = getNexts(listPoint);
-        }else{
+            newList.addAll(listPoint.subList(left, right));
+            result = getNexts(listPoint);
+        } else {
             Point[] leftPoint = getMinPointByMerge(listPoint, left, (left + right) / 2);
-            Point[] rightPoint = getMinPointByMerge(listPoint, (left + right)/2 +1,right);
+            Point[] rightPoint = getMinPointByMerge(listPoint, (left + right) / 2 + 1, right);
             Double leftMin = getMinDistance(leftPoint[0], leftPoint[1]);
             Double rightMin = getMinDistance(rightPoint[0], rightPoint[1]);
-            if(leftMin <= rightMin){
+            if (leftMin <= rightMin) {
                 result = leftPoint;
                 minDistance = leftMin;
-            }else{
+            } else {
                 result = rightPoint;
                 minDistance = rightMin;
             }
             //根据鹊巢原理，中间点位只会出现在中间6个（可以加上x y都是int ，然后自己模拟一下）
-            if(listPoint.size() > 6){
+            if (listPoint.size() > 6) {
                 List<Point> newList = new ArrayList<Point>();
-                newList.addAll(listPoint.subList((left + right) / 2-3,(left + right) / 2+3));
+                newList.addAll(listPoint.subList((left + right) / 2 - 3, (left + right) / 2 + 3));
                 result = getNexts(newList);
-            }else {
+            } else {
                 result = getNexts(listPoint);
             }
         }
@@ -80,10 +181,10 @@ public class EasyImplTest {
         Double minDistance = getMinDistance(listPoint.get(0), listPoint.get(1));
         result[0] = listPoint.get(0);
         result[1] = listPoint.get(1);
-        for(int i = 1; i<listPoint.size() -1; i++){
-            for(int j = i+1 ; j<listPoint.size() ; j++){
+        for (int i = 1; i < listPoint.size() - 1; i++) {
+            for (int j = i + 1; j < listPoint.size(); j++) {
                 Double minDistance1 = getMinDistance(listPoint.get(i), listPoint.get(j));
-                if(minDistance1 < minDistance){
+                if (minDistance1 < minDistance) {
                     result[0] = listPoint.get(i);
                     result[1] = listPoint.get(j);
                 }
@@ -92,8 +193,8 @@ public class EasyImplTest {
         return result;
     }
 
-    private static Double getMinDistance(Point x , Point y){
-        double dis=Math.sqrt(Math.pow(x.getX()-y.getX(), 2)+Math.pow(x.getY()-y.getY(), 2));
+    private static Double getMinDistance(Point x, Point y) {
+        double dis = Math.sqrt(Math.pow(x.getX() - y.getX(), 2) + Math.pow(x.getY() - y.getY(), 2));
         return dis;
     }
 
@@ -118,23 +219,24 @@ public class EasyImplTest {
 
     /**
      * 查找最后一个值小于等于给定值的元素
-     * @param a 数组
+     *
+     * @param a      数组
      * @param length 数组长度
-     * @param i 定值
+     * @param i      定值
      * @return
      */
     private int binarySearch5(int[] a, int length, int i) {
         int s = 0;
-        int e = length-1;
-        while(s<=e){
+        int e = length - 1;
+        while (s <= e) {
             int m = s + ((e - s) >> 1);
-            if(a[m] > i){
-                e = m-1;
-            }else{
-                if(m == length-1 || a[m+1] > i){
+            if (a[m] > i) {
+                e = m - 1;
+            } else {
+                if (m == length - 1 || a[m + 1] > i) {
                     return m;
-                }else {
-                    s = m+1;
+                } else {
+                    s = m + 1;
                 }
             }
         }
@@ -144,24 +246,25 @@ public class EasyImplTest {
 
     /**
      * 查找第一个值大于等于给定值的元素
-     * @param a 数组
+     *
+     * @param a      数组
      * @param length 数组长度
-     * @param i 定值
+     * @param i      定值
      * @return
      */
     private int binarySearch4(int[] a, int length, int i) {
         int s = 0;
-        int e = length-1;
-        while(s<=e){
+        int e = length - 1;
+        while (s <= e) {
             int m = s + ((e - s) >> 1);
-            if(a[m] >= i){
-                if(m == 0 || a[m-1] < i){
+            if (a[m] >= i) {
+                if (m == 0 || a[m - 1] < i) {
                     return m;
-                }else{
-                    e = m-1;
+                } else {
+                    e = m - 1;
                 }
-            }else if(a[m] < i){
-                s = m+1;
+            } else if (a[m] < i) {
+                s = m + 1;
             }
         }
         return -1;
@@ -169,26 +272,27 @@ public class EasyImplTest {
 
     /**
      * 查找最后一个值等于给定值的元素
-     * @param a 数组
+     *
+     * @param a      数组
      * @param length 数组长度
-     * @param i 定值
+     * @param i      定值
      * @return
      */
     private int binarySearch3(int[] a, int length, int i) {
         int s = 0;
-        int e = length-1;
-        while(s<=e){
+        int e = length - 1;
+        while (s <= e) {
             int m = s + ((e - s) >> 1);
-            if(a[m] > i){
-                e = m-1;
-            }else if(a[m] < i){
-                s = m+1;
-            }else{
+            if (a[m] > i) {
+                e = m - 1;
+            } else if (a[m] < i) {
+                s = m + 1;
+            } else {
                 //如果m的后一个值不是i，就证明m是数组中的第一个定值
-                if(m==length-1 || a[m+1] != i){
+                if (m == length - 1 || a[m + 1] != i) {
                     return m;
-                }else{
-                    s=m+1;
+                } else {
+                    s = m + 1;
                 }
             }
         }
@@ -197,26 +301,27 @@ public class EasyImplTest {
 
     /**
      * 查找第一个值等于给定值的元素
-     * @param a 数组
+     *
+     * @param a      数组
      * @param length 数组长度
-     * @param i 定值
+     * @param i      定值
      * @return
      */
     private int binarySearch2(int[] a, int length, int i) {
         int s = 0;
-        int e = length-1;
-        while(s<=e){
+        int e = length - 1;
+        while (s <= e) {
             int m = s + ((e - s) >> 1);
-            if(a[m] > i){
-                e = m-1;
-            }else if(a[m] < i){
-                s = m+1;
-            }else{
+            if (a[m] > i) {
+                e = m - 1;
+            } else if (a[m] < i) {
+                s = m + 1;
+            } else {
                 //如果m的前一个值不是i，就证明m是数组中的第一个定值
-                if(m==0 || a[m-1] != i){
+                if (m == 0 || a[m - 1] != i) {
                     return m;
-                }else{
-                    e=m-1;
+                } else {
+                    e = m - 1;
                 }
             }
         }
@@ -225,51 +330,52 @@ public class EasyImplTest {
 
     /**
      * 数组中有目标值的话，返回数组下标，没有的话返回-1
+     *
      * @param a 数组
      * @param s 开始
      * @param e 结尾
      * @param i 目标值
      * @return
      */
-    private int binarySearch1(int[] a,int s, int e, int i) {
-        if(s>e){
+    private int binarySearch1(int[] a, int s, int e, int i) {
+        if (s > e) {
             return -1;
         }
-        int m = (s+e)/2;
-        if(a[m] == i){
+        int m = (s + e) / 2;
+        if (a[m] == i) {
             return m;
-        }else if(a[m] < i){
-            return binarySearch1(a,m+1,e,i);
-        }else{
-            return binarySearch1(a,s,m-1,i);
+        } else if (a[m] < i) {
+            return binarySearch1(a, m + 1, e, i);
+        } else {
+            return binarySearch1(a, s, m - 1, i);
         }
     }
 
     /**
      * 数组中有目标值的话，返回数组下标，没有的话返回-1
-     * @param a 数组
+     *
+     * @param a      数组
      * @param length 数据长度
-     * @param i 目标值
+     * @param i      目标值
      * @return
      */
     private int binarySearch(int[] a, int length, int i) {
         int s = 0;
-        int e = length-1;
-        while (s<=e) {
-            int m = (s+e)/2;
-            if(a[m] == i){
+        int e = length - 1;
+        while (s <= e) {
+            int m = (s + e) / 2;
+            if (a[m] == i) {
                 return m;
-            }else if(a[m] < i){
+            } else if (a[m] < i) {
                 s = m + 1;
-            }else{
-                e = m -1;
+            } else {
+                e = m - 1;
             }
         }
         return -1;
     }
 
     /**
-     *
      * @param a
      * @param max 数据最大的是几位数
      */
@@ -279,25 +385,25 @@ public class EasyImplTest {
         int[] bucket = new int[length];
 
         //判断位数
-        for(int i = 1 ; i<= max; i++){
+        for (int i = 1; i <= max; i++) {
             //清空
-            for(int j = 0 ; j< length ; j++){
+            for (int j = 0; j < length; j++) {
                 temp[j] = 0;
             }
             //判断位数上之前别分有几个
-            for(int j = 0 ; j <length ; j++){
-                temp[getFigure(a[j],i)]++;
+            for (int j = 0; j < length; j++) {
+                temp[getFigure(a[j], i)]++;
             }
-            for(int j = 1 ; j <length;j++){
-                temp[j] = temp[j]+temp[j-1];
+            for (int j = 1; j < length; j++) {
+                temp[j] = temp[j] + temp[j - 1];
             }
             //类似计数排序的精髓
-            for(int j = length-1 ; j>=0;j--){
-                bucket[temp[getFigure(a[j],i)]-1] = a[j];
-                temp[getFigure(a[j],i)]--;
+            for (int j = length - 1; j >= 0; j--) {
+                bucket[temp[getFigure(a[j], i)] - 1] = a[j];
+                temp[getFigure(a[j], i)]--;
             }
             //赋值
-            for(int j = 0 ; j< length ; j++){
+            for (int j = 0; j < length; j++) {
                 a[j] = bucket[j];
             }
         }
@@ -305,40 +411,40 @@ public class EasyImplTest {
     }
 
     private int getFigure(int i, int k) {
-        return (i/new Double(Math.pow(10, k - 1)).intValue())%10;
+        return (i / new Double(Math.pow(10, k - 1)).intValue()) % 10;
     }
 
 
     private void countingSort(int[] a, int length) {
-        if(length < 1){
+        if (length < 1) {
             return;
         }
         //判断最大的数据
         int max = a[0];
-        for(int i = 1 ; i<length ; i++){
-            if(a[i]>max){
+        for (int i = 1; i < length; i++) {
+            if (a[i] > max) {
                 max = a[i];
             }
         }
         //申请一个数组
-        int[] b = new int[max+1];
+        int[] b = new int[max + 1];
         //计算个数
-        for(int i = 0 ; i< length ; i++){
+        for (int i = 0; i < length; i++) {
             b[a[i]]++;
         }
         //计算每个位置前面有多少个数据
-        for(int i=1 ; i<= max ; i++){
-            b[i] = b[i] + b[i-1];
+        for (int i = 1; i <= max; i++) {
+            b[i] = b[i] + b[i - 1];
         }
         int[] c = new int[length];
         //这样子倒着来的话，就是稳定的排序，相同数字前后位置没有发生变化
-        for(int i = length-1 ; i>=0; i--){
+        for (int i = length - 1; i >= 0; i--) {
             //减1是下标从0开始，而个数是从1开始
-            c[b[a[i]]-1] = a[i];
+            c[b[a[i]] - 1] = a[i];
             b[a[i]]--;
         }
         //赋值
-        for(int i = 0; i<length; i++){
+        for (int i = 0; i < length; i++) {
             a[i] = c[i];
         }
 
@@ -347,18 +453,18 @@ public class EasyImplTest {
     private void bucketSort(int[] a) {
         ArrayList<LinkedList<Integer>> linkedLists = new ArrayList<>();
         //创建10个桶
-        for(int i = 0 ; i<10 ; i++){
+        for (int i = 0; i < 10; i++) {
             linkedLists.add(new LinkedList<Integer>());
         }
-        for(int i = 0 ; i < a.length; i++){
+        for (int i = 0; i < a.length; i++) {
             //判断放入位置
             int result = getIndex(a[i]);
             //插入排序
-            insertSort(linkedLists.get(result),a[i]);
+            insertSort(linkedLists.get(result), a[i]);
         }
         int index = 0;
-        for(LinkedList<Integer> ll : linkedLists){
-            for(Integer va : ll){
+        for (LinkedList<Integer> ll : linkedLists) {
+            for (Integer va : ll) {
                 a[index++] = va;
             }
         }
@@ -366,43 +472,43 @@ public class EasyImplTest {
 
     private void insertSort(LinkedList<Integer> integers, int num) {
         integers.add(num);
-        if(integers.size() >1 ){
-        for(int i = 1 ; i<integers.size();i++){
-            int value = integers.get(i);
-                int j = i-1;
-                for(;j>0;j--){
-                    if(integers.get(i) < integers.get(j)){
-                        integers.set(j+1,integers.get(j));
-                    }else {
+        if (integers.size() > 1) {
+            for (int i = 1; i < integers.size(); i++) {
+                int value = integers.get(i);
+                int j = i - 1;
+                for (; j > 0; j--) {
+                    if (integers.get(i) < integers.get(j)) {
+                        integers.set(j + 1, integers.get(j));
+                    } else {
                         break;
                     }
                 }
-                integers.set(j,value);
+                integers.set(j, value);
             }
         }
     }
 
     private int getIndex(int i) {
-        return i%10;
+        return i % 10;
     }
 
     private void quick_sort_c(int[] a, int s, int e) {
-        if(s>e){
+        if (s > e) {
             return;
         }
-        int i = s,j=e;
+        int i = s, j = e;
 
         int temp = a[s];
-        while(i < j){
-            while(a[j]>=temp && i < j){
+        while (i < j) {
+            while (a[j] >= temp && i < j) {
                 j--;
             }
-            while(a[i]<=temp && i < j){
+            while (a[i] <= temp && i < j) {
                 i++;
             }
 
             //交换位置
-            if(i < j){
+            if (i < j) {
                 int i1 = a[i];
                 a[i] = a[j];
                 a[j] = i1;
@@ -412,52 +518,52 @@ public class EasyImplTest {
         a[i] = temp;
 
 
-        quick_sort_c(a,s,j-1);
-        quick_sort_c(a,j+1,e);
+        quick_sort_c(a, s, j - 1);
+        quick_sort_c(a, j + 1, e);
     }
 
     private int[] merge_sort_c(int[] a, int s, int e) {
-        if(e<=s){
+        if (e <= s) {
             return new int[0];
         }
 
-        int m = (s+e)/2;
+        int m = (s + e) / 2;
         int[] lefts = Arrays.copyOfRange(a, s, m - 1);
         int[] rights = Arrays.copyOfRange(a, m, e);
         int[] left = merge_sort_c(lefts, s, m - 1);
         int[] right = merge_sort_c(rights, m, e);
-        return merge_sort(left,right);
+        return merge_sort(left, right);
     }
 
     private int[] merge_sort(int[] left, int[] right) {
-        if(left == null || left.length == 0){
+        if (left == null || left.length == 0) {
             return new int[0];
         }
-        if(right == null || right.length == 0){
+        if (right == null || right.length == 0) {
             return new int[0];
         }
         int leftL = left.length;
         int rightL = right.length;
-        int[] ints = new int[ leftL+ rightL];
-        int a =0,b=0,c=0;
-        while(a < leftL && b<rightL){
-            if(left[a]> right[b]){
+        int[] ints = new int[leftL + rightL];
+        int a = 0, b = 0, c = 0;
+        while (a < leftL && b < rightL) {
+            if (left[a] > right[b]) {
                 ints[c] = right[b];
                 b++;
-            }else{
+            } else {
                 ints[c] = right[a];
                 a++;
             }
             c++;
         }
-        if(a < leftL ){
-            while(a < leftL){
+        if (a < leftL) {
+            while (a < leftL) {
                 ints[c] = right[a];
                 a++;
                 c++;
             }
-        }else{
-            while(b < rightL){
+        } else {
+            while (b < rightL) {
                 ints[c] = right[b];
                 b++;
                 c++;
@@ -609,15 +715,15 @@ public class EasyImplTest {
     @Test
     public void majorityElement() {
         EasyImpl easy = new EasyImpl();
-        Integer result = easy.majorityElement(new int[]{2,2,1,1,1,2,2});
+        Integer result = easy.majorityElement(new int[]{2, 2, 1, 1, 1, 2, 2});
         System.out.println(result);
     }
 
     @Test
     public void maxProfit() {
         EasyImpl easy = new EasyImpl();
-        Integer result = easy.maxProfit(new int[]{7,1,5,3,6,4});
-//        Integer result = easy.maxProfit(new int[]{1,2,3,4,5});
+        Integer result = easy.maxProfit(new int[]{7, 1, 5, 3, 6, 4});
+        //        Integer result = easy.maxProfit(new int[]{1,2,3,4,5});
         System.out.println(result);
     }
 
@@ -632,14 +738,14 @@ public class EasyImplTest {
         TreeNode treeNode3 = new TreeNode(15);
         TreeNode treeNode4 = new TreeNode(7);
 
-//        treeNode.left = treeNode1;
+        //        treeNode.left = treeNode1;
         treeNode.right = treeNode2;
 
         treeNode2.left = treeNode3;
         treeNode2.right = treeNode4;
 
         EasyImpl easy = new EasyImpl();
-//        int i = easy.maxDepth(treeNode);
+        //        int i = easy.maxDepth(treeNode);
         int i = easy.minDepth(treeNode);
         System.out.println(i);
     }
