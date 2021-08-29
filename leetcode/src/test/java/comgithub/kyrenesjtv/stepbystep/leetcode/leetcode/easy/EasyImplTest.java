@@ -22,6 +22,26 @@ public class EasyImplTest {
 
 
     @Test
+    public void test04() {
+        String ss = "_ut_zm=53b83d9b-e726-408c-a7d9-60f4c5b66d18; Max-Age=43200; Expires=Wed, 25-Aug-2021 20:13:30 GMT; Path=/";
+        String s = ss.split(";")[0].split("=")[1];
+        System.out.println(s);
+
+
+    }
+
+
+    @Test
+    public void test03() {
+        String aaa = "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,19,0,0,0,0,0,0";
+        String[] split = aaa.split(",");
+        Integer aa = Integer.parseInt("08");
+        ArrayList<Object> objects = new ArrayList<>();
+        System.out.println(1111);
+    }
+
+
+    @Test
     public void test02() {
         int dataZ = 54321;
         // 每500条数据开启一条线程
