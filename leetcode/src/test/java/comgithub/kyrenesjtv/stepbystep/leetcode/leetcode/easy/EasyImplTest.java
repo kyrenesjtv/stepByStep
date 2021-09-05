@@ -3,12 +3,10 @@ package comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.easy;
 import comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.bean.ListNode;
 import comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.bean.Point;
 import comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.middle.TreeNode;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -19,6 +17,16 @@ import java.util.concurrent.Executors;
  * @CreateDate: 2019/7/22 17:46
  */
 public class EasyImplTest {
+
+
+    @Test
+    public void test05() {
+        HashMap<String, String> stringStringHashMap = new HashMap<>();
+        String s = stringStringHashMap.get("111");
+        boolean empty = StringUtils.isBlank(s);
+        System.out.println("1111");
+
+    }
 
 
     @Test

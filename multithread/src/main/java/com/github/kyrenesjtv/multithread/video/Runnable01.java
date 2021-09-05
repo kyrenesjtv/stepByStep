@@ -1,12 +1,11 @@
 package com.github.kyrenesjtv.multithread.video;
 
-
 /**
  * @ProjectName: stepByStep
  * @Author: AlbertW
- * @CreateDate: 2021/8/22 22:44
+ * @CreateDate: 2021/8/22 22:48
  */
-public class MyThread01 extends Thread {
+public class Runnable01 implements Runnable {
 
     @Override
     public void run() {
@@ -15,9 +14,11 @@ public class MyThread01 extends Thread {
         }
     }
 
+
     public static void main(String[] args) {
-        MyThread01 myThread = new MyThread01();
-        myThread.start();
+        Runnable01 myThread01 = new Runnable01();
+        Thread thread = new Thread(myThread01);
+        thread.start();
 
         for (int i = 0; i < 30; i++) {
             System.out.println("我在学习多线程====" + i);

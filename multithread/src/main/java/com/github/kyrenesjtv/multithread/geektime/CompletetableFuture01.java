@@ -40,7 +40,7 @@ public class CompletetableFuture01 {
 
 
         //描述串行关系
-        /** <void>无返回 <r>有返回  fn-可以接受参数 、consumer 支持参数 action 不支持参数、
+        /** <void>无返回 <r>有返回  fn可以接受参数 、consumer 支持参数 action 不支持参数、
          CompletionStage<R> thenApply (fn);
          CompletionStage<R> thenApplyAsync (fn);
          CompletionStage<void> thenAccept (consumer);
