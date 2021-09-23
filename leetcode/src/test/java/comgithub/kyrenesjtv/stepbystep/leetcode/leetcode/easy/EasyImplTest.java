@@ -1,6 +1,7 @@
 package comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.easy;
 
 import comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.bean.ListNode;
+import comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.bean.MenuTreeDto;
 import comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.bean.Point;
 import comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.middle.TreeNode;
 import org.apache.commons.lang3.StringUtils;
@@ -10,6 +11,7 @@ import java.util.*;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.stream.Collectors;
 
 /**
  * @ProjectName: stepByStep
@@ -17,6 +19,63 @@ import java.util.concurrent.Executors;
  * @CreateDate: 2019/7/22 17:46
  */
 public class EasyImplTest {
+
+
+    @Test
+    public void test07() {
+        MenuTreeDto dto00 = new MenuTreeDto();
+        ArrayList<MenuTreeDto> menuTreeDtos = new ArrayList<>();
+        dto00.setChildrenList(menuTreeDtos);
+        List<MenuTreeDto> childrenList = dto00.getChildrenList();
+
+        Set<List<MenuTreeDto>> collect = childrenList.stream().map(MenuTreeDto::getChildrenList).collect(Collectors.toSet());
+        System.out.println("111");
+    }
+
+    @Test
+    public void test06() {
+        MenuTreeDto dto00 = new MenuTreeDto();
+
+        MenuTreeDto dto01 = new MenuTreeDto();
+        dto01.setPerms("01");
+        List<MenuTreeDto> list01 = new ArrayList<>();
+        MenuTreeDto dto011 = new MenuTreeDto();
+        dto011.setPerms("011");
+        MenuTreeDto dto012 = new MenuTreeDto();
+        dto012.setPerms("012");
+        list01.add(dto011);
+        list01.add(dto012);
+        dto01.setChildrenList(list01);
+
+        MenuTreeDto dto02 = new MenuTreeDto();
+        dto02.setPerms("02");
+        List<MenuTreeDto> list02 = new ArrayList<>();
+        MenuTreeDto dto0021 = new MenuTreeDto();
+        dto0021.setPerms("021");
+        MenuTreeDto dto0022 = new MenuTreeDto();
+        dto0022.setPerms("022");
+        list02.add(dto0021);
+        list02.add(dto0022);
+        dto02.setChildrenList(list02);
+
+        ArrayList<MenuTreeDto> menuTreeDtos = new ArrayList<>();
+        dto00.setPerms("00");
+        menuTreeDtos.add(dto01);
+        menuTreeDtos.add(dto02);
+
+        dto00.setChildrenList(menuTreeDtos);
+        getAllDepartName(menuTreeDtos);
+    }
+
+    private void getAllDepartName(List<MenuTreeDto> menuTreeDtos) {
+        if (menuTreeDtos == null) {
+            return;
+        }
+        for (MenuTreeDto menuTreeDto : menuTreeDtos) {
+            System.out.println(menuTreeDto.getPerms());
+            getAllDepartName(menuTreeDto.getChildrenList());
+        }
+    }
 
 
     @Test
