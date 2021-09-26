@@ -3,6 +3,7 @@ package comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.easy;
 import comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.bean.ListNode;
 import comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.bean.MenuTreeDto;
 import comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.bean.Point;
+import comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.meiju.Color;
 import comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.middle.TreeNode;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
@@ -20,6 +21,17 @@ import java.util.stream.Collectors;
  */
 public class EasyImplTest {
 
+
+    @Test
+    public void test08() {
+        String msg = Color.getValue(0).getMsg();
+
+        Color[] values = Color.values();
+
+        Color color = Color.valueOf("GREEN");
+
+        System.out.println("123");
+    }
 
     @Test
     public void test07() {
