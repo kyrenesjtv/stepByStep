@@ -24,6 +24,7 @@ public class EasyImplTest {
 
     @Test
     public void test08() {
+        //branch-01
         String msg = Color.getValue(0).getMsg();
 
         Color[] values = Color.values();
