@@ -23,6 +23,15 @@ public class EasyImplTest {
 
 
     @Test
+    public void test09() {
+        int a1 = 123;
+        int a2 = 124;
+        System.out.println(a1%2);
+        System.out.println(a2%2);
+    }
+
+
+    @Test
     public void test08() {
         //branch-01
         //branch-02

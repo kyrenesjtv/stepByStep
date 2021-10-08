@@ -15,6 +15,7 @@
         <module>boot-dubbo-interferce</module>
         <module>boot-dubbo-provider</module>
         <module>multithread</module>
+        <module>redis-jedis</module>
     </modules>
 
 </project>
