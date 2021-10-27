@@ -8,8 +8,11 @@ import comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.middle.TreeNode;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.*;
 import java.util.concurrent.Callable;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
@@ -20,6 +23,60 @@ import java.util.stream.Collectors;
  * @CreateDate: 2019/7/22 17:46
  */
 public class EasyImplTest {
+
+
+    @Test
+    public void test14() {
+        Double diffRatio = 93.54748603351956;
+        BigDecimal bigDecimal1 = new BigDecimal(diffRatio).setScale(2, BigDecimal.ROUND_DOWN);
+        BigDecimal bigDecimal = new BigDecimal(100 - diffRatio).setScale(2, BigDecimal.ROUND_HALF_UP);
+        double v = bigDecimal.doubleValue();
+        if(bigDecimal1.doubleValue()+bigDecimal.doubleValue() != 100){
+             v = bigDecimal.doubleValue() + 0.01;
+        }
+        System.out.println();
+    }
+
+    @Test
+    public void test13() {
+        Long v= 754L;
+        Long total = 7160L;
+        DecimalFormat df4 = new DecimalFormat();
+        df4.applyPattern("0.00%");
+        Double aDouble = Double.valueOf(v.doubleValue() / total);
+        String format = df4.format(aDouble);
+        System.out.println("123");
+
+    }
+
+    @Test
+    public void test12() {
+        String aa = "123456789";
+        String substring = aa.substring(0, 8);
+        System.out.println("123");
+    }
+
+    @Test
+    public void test11() {
+        Map<String, List<String>> map = new HashMap<>();
+        for (int i = 0; i < 10; i++) {
+            List<String> orDefault = map.computeIfAbsent("1", k->{
+                return new ArrayList<>();
+            });
+            orDefault.add(""+i);
+        }
+        System.out.println("123");
+    }
+
+    @Test
+    public void test10() {
+        ConcurrentHashMap<Long, Boolean> dataSyncToken = new ConcurrentHashMap<>();
+//        dataSyncToken.putIfAbsent(123L, Boolean.TRUE);
+//        dataSyncToken.get(123L) != null
+//        Boolean aBoolean = dataSyncToken.get(123L);
+//        System.out.println("123");
+    }
+
 
 
     @Test
