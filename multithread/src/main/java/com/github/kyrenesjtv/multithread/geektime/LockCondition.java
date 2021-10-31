@@ -4,7 +4,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * TODO 一句话描述
+ * 锁的种类
  *
  * @author huojianxiong
  * 2021/8/29 15:03

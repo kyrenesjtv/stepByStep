@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * TODO 一句话描述
+ * 类似于账本，要有出和入的2本才能够操作
  *
  * @author huojianxiong
  * 2021/8/16 11:45

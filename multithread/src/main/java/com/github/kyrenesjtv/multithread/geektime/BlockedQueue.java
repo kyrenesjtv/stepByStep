@@ -7,7 +7,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * TODO 一句话描述
+ * 阻塞队列
  *
  * @author huojianxiong
  * 2021/8/16 14:04

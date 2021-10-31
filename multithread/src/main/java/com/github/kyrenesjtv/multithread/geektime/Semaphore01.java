@@ -3,7 +3,7 @@ package com.github.kyrenesjtv.multithread.geektime;
 import java.util.Queue;
 
 /**
- * 信号量
+ * 信号量-限流器
  *
  * @author huojianxiong
  * 2021/8/29 15:28

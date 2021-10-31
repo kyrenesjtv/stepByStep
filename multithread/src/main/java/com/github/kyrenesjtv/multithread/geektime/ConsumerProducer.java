@@ -10,7 +10,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 
 /**
- * TODO 一句话描述
+ * 生产者和消费者
  *
  * @author huojianxiong
  * 2021/10/4 22:25

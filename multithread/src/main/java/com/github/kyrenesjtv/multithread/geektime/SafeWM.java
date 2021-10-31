@@ -3,7 +3,7 @@ package com.github.kyrenesjtv.multithread.geektime;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
- * TODO 一句话描述
+ * 安全的库存上下限
  *
  * @author huojianxiong
  * 2021/10/2 23:34

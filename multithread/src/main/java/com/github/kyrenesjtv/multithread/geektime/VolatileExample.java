@@ -1,7 +1,7 @@
 package com.github.kyrenesjtv.multithread.geektime;
 
 /**
- * TODO 一句话描述
+ * 可见性的测试
  *
  * @author huojianxiong
  * 2021/8/16 11:06

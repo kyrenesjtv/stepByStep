@@ -4,7 +4,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 /**
- * TODO 一句话描述
+ * 安全的DateFormat。用ThreadLocal来实现。因为DateFormat是线程不安全的
  *
  * @author huojianxiong
  * 2021/10/3 0:51

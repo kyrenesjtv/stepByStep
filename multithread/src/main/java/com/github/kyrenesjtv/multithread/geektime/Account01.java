@@ -1,7 +1,7 @@
 package com.github.kyrenesjtv.multithread.geektime;
 
 /**
- * TODO 一句话描述
+ * 金额类
  *
  * @author huojianxiong
  * 2021/8/16 11:29
