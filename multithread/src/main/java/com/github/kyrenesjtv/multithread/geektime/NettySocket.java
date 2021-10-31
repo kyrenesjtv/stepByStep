@@ -12,7 +12,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
  * @author huojianxiong
  * 2021/10/31 21:44
  */
-public class NettyEcho {
+public class NettySocket {
 
 
 
