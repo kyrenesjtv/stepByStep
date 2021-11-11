@@ -6,6 +6,7 @@ import comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.bean.Point;
 import comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.meiju.Color;
 import comgithub.kyrenesjtv.stepbystep.leetcode.leetcode.middle.TreeNode;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.DateUtils;
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -23,6 +24,34 @@ import java.util.stream.Collectors;
  * @CreateDate: 2019/7/22 17:46
  */
 public class EasyImplTest {
+
+
+    @Test
+    public void test16() {
+
+        String low = "asdfghj";
+        String up = "ASDFGHJ";
+
+        String s = up.toLowerCase(Locale.ROOT);
+        String s1 = up.toLowerCase();
+
+        if(low.toLowerCase(Locale.ROOT).contains("asd")){
+            System.out.println("low");
+        }
+        if(up.contains("asd")){
+            System.out.println("up");
+        }
+
+    }
+
+
+
+    @Test
+    public void test15() {
+        Date date = DateUtils.addDays(new Date(), -1);
+        Date date1 = DateUtils.addMinutes(date, 1);
+        System.out.println("123");
+    }
 
 
     @Test
