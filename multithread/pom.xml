@@ -30,12 +30,13 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+<!--        google 工具包-->
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>18.0</version>
         </dependency>
-
+<!-- netty包-->
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
@@ -72,6 +73,14 @@
             <artifactId>akka-remote_${scala.compat.version}</artifactId>
             <version>${akka.version}</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.multiverse/multiverse-alpha -->
+        <dependency>
+            <groupId>org.multiverse</groupId>
+            <artifactId>multiverse-alpha</artifactId>
+            <version>0.6.2</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>
