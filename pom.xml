@@ -19,6 +19,7 @@
         <module>redis-jedis</module>
         <module>eventbus</module>
         <module>demo</module>
+        <module>java4error100</module>
     </modules>
 
 </project>
