@@ -25,7 +25,7 @@ import java.util.stream.IntStream;
 public class CopyOnWriteArrayListDemo {
 
 
-    //测试并发写的性能
+    //测试并发写的性能 - copyOnWriteArrayList写数据的时候，每次都会先 Object[] newElements = Arrays.copyOf(elements, len + 1);
     @GetMapping("write")
     public Map testWrite() {
         List<Integer> copyOnWriteArrayList = new CopyOnWriteArrayList<>();
