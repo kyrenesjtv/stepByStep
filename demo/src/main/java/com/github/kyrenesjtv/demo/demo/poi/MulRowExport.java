@@ -8,8 +8,10 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.lang.reflect.Method;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -34,40 +36,7 @@ public class MulRowExport {
         }
     }
 
-    private static boolean createExcelFile() throws Exception {
-
-        boolean state = false;
-        OutputStream os = null;
-        FileOutputStream fos = null;
-        String resultFileName = null;
-        String fileName = "";
-        try {
-            fileName = System.currentTimeMillis()+".xlsx";
-            Workbook wb = createWorkBook01();
-
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-            resultFileName = "D:\\" + File.separator + "excel" + File.separator + sdf.format(new Date())
-                    + File.separator + fileName;
-            resultFileName = resultFileName.replaceAll("\\\\", "/");
-            File file = new File(resultFileName);
-            if (!file.exists()) {
-                file.getParentFile().mkdirs();
-            }
-            fos = new FileOutputStream(file);
-            os = new BufferedOutputStream(fos, 1024);
-            wb.write(os);
-            os.flush();
-            state = true;
-        } finally {
-            if (os != null)
-                os.close();
-        }
-        return state;
-    }
-
-
-
-
+ 
     //参数说明:  fileName：文件名   projects：对象集合  columnNames： 列名   keys： map中的key
     public static void start_download(HttpServletResponse response, String fileName, List<?> projects,
                                       String[] columnNames, String[] keys) throws IOException {
@@ -89,7 +58,7 @@ public class MulRowExport {
         // 设置response参数，可以打开下载页面
         response.reset();
         response.setContentType("application/vnd.ms-excel;charset=utf-8");
-        response.setHeader("Content-Disposition", "attachment;filename="+ new String((fileName + ".xls").getBytes(), "iso-8859-1"));
+        response.setHeader("Content-Disposition", "attachment;filename=" + new String((fileName + ".xls").getBytes(), "iso-8859-1"));
         ServletOutputStream out = response.getOutputStream();
         BufferedInputStream bis = null;
         BufferedOutputStream bos = null;
@@ -116,11 +85,11 @@ public class MulRowExport {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("sheetName", "sheet");
         listmap.add(map);
-        Object project=null;
+        Object project = null;
         for (int j = 0; j < projects.size(); j++) {
-            project=projects.get(j);
+            project = projects.get(j);
             Map<String, Object> mapValue = new HashMap<String, Object>();
-            for(int i=0; i<keys.length; i++){
+            for (int i = 0; i < keys.length; i++) {
                 mapValue.put(keys[i], getFieldValueByName(keys[i], project));
             }
 
@@ -128,33 +97,36 @@ public class MulRowExport {
         }
         return listmap;
     }
+
     /**
      * 利用反射  根据属性名获取属性值
-     * */
+     */
     private static Object getFieldValueByName(String fieldName, Object o) {
         try {
             String firstLetter = fieldName.substring(0, 1).toUpperCase();
             String getter = "get" + firstLetter + fieldName.substring(1);
-            Method method = o.getClass().getMethod(getter, new Class[] {});
-            Object value = method.invoke(o, new Object[] {});
+            Method method = o.getClass().getMethod(getter, new Class[]{});
+            Object value = method.invoke(o, new Object[]{});
             return value;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
+
     /**
      * 创建excel文档对象
-     * @param keys list中map的key数组集合
+     *
+     * @param keys        list中map的key数组集合
      * @param columnNames excel的列名
-     * */
-    private static Workbook createWorkBook(List<Map<String, Object>> list, String []keys, String columnNames[]) {
+     */
+    private static Workbook createWorkBook(List<Map<String, Object>> list, String[] keys, String columnNames[]) {
         // 创建excel工作簿
         Workbook wb = new HSSFWorkbook();
         // 创建第一个sheet（页），并命名
         Sheet sheet = wb.createSheet(list.get(0).get("sheetName").toString());
         // 手动设置列宽。第一个参数表示要为第几列设；，第二个参数表示列的宽度，n为列高的像素数。
-        for(int i=0;i<keys.length;i++){
+        for (int i = 0; i < keys.length; i++) {
             sheet.setColumnWidth((short) i, (short) (35.7 * 150));
         }
 
@@ -194,7 +166,7 @@ public class MulRowExport {
         cs2.setBorderBottom(CellStyle.BORDER_THIN);
         cs2.setAlignment(CellStyle.ALIGN_CENTER);
         //设置列名
-        for(int i=0;i<columnNames.length;i++){
+        for (int i = 0; i < columnNames.length; i++) {
             Cell cell = row.createCell(i);
             cell.setCellValue(columnNames[i]);
             cell.setCellStyle(cs);
@@ -205,16 +177,14 @@ public class MulRowExport {
             // 创建一行，在页sheet上
             Row row1 = sheet.createRow((short) i);
             // 在row行上创建一个方格
-            for(short j=0;j<keys.length;j++){
+            for (short j = 0; j < keys.length; j++) {
                 Cell cell = row1.createCell(j);
-                cell.setCellValue(list.get(i).get(keys[j]) == null?" ": list.get(i).get(keys[j]).toString());
+                cell.setCellValue(list.get(i).get(keys[j]) == null ? " " : list.get(i).get(keys[j]).toString());
                 cell.setCellStyle(cs2);
             }
         }
         return wb;
     }
-
-
 
 
     private static Workbook createWorkBook01() {
@@ -264,7 +234,7 @@ public class MulRowExport {
         cs2.setAlignment(CellStyle.ALIGN_CENTER);
         //设置列名
         String[] columnNames = {"SELLER_ID", "SELLE_NAME", "物流", "2021/10/20", "2021/10/21"};
-        for(int i=0;i<columnNames.length;i++){
+        for (int i = 0; i < columnNames.length; i++) {
             Cell cell = row.createCell(i);
             cell.setCellValue(columnNames[i]);
             cell.setCellStyle(cs);
@@ -281,7 +251,7 @@ public class MulRowExport {
             // 在row行上创建一个方格
             SellerLogisticsCompanyBo sellerLogisticsCompanyBo = data.get(i);
             List<SellerLogisticsCompanyBo.LogisticsCompanyStat> list = sellerLogisticsCompanyBo.getList();
-            if(!list.isEmpty()){
+            if (!list.isEmpty()) {
                 for (SellerLogisticsCompanyBo.LogisticsCompanyStat logisticsCompanyStat : list) {
                     Row row1 = sheet.createRow((short) z);
 
@@ -310,16 +280,16 @@ public class MulRowExport {
         ArrayList<SellerLogisticsCompanyBo> sellerLogisticsCompanyBos = new ArrayList<>();
         for (int z = 0; z < 3; z++) {
             SellerLogisticsCompanyBo bo = new SellerLogisticsCompanyBo();
-            bo.setSellerId(123L+z);
-            bo.setSellerNick("123L"+z);
+            bo.setSellerId(123L + z);
+            bo.setSellerNick("123L" + z);
 
             List<SellerLogisticsCompanyBo.LogisticsCompanyStat> list = new ArrayList<>();
             for (int i = 0; i < 5; i++) {
                 SellerLogisticsCompanyBo.LogisticsCompanyStat logisticsCompanyStat = new SellerLogisticsCompanyBo.LogisticsCompanyStat();
-                logisticsCompanyStat.setLogisticsName("顺丰"+i);
+                logisticsCompanyStat.setLogisticsName("顺丰" + i);
                 Map<String, Integer> orderCountMap = new ConcurrentHashMap<>();
-                orderCountMap.put("2021/10/20", (int)(1+Math.random()*100));
-                orderCountMap.put("2021/10/21", (int)(1+Math.random()*100));
+                orderCountMap.put("2021/10/20", (int) (1 + Math.random() * 100));
+                orderCountMap.put("2021/10/21", (int) (1 + Math.random() * 100));
                 logisticsCompanyStat.setOrderCountMap(orderCountMap);
                 list.add(logisticsCompanyStat);
             }
