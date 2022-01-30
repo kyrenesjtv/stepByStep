@@ -36,7 +36,11 @@ public class MulRowExport {
         }
     }
 
- 
+    private static boolean createExcelFile() {
+        return true;
+    }
+
+
     //参数说明:  fileName：文件名   projects：对象集合  columnNames： 列名   keys： map中的key
     public static void start_download(HttpServletResponse response, String fileName, List<?> projects,
                                       String[] columnNames, String[] keys) throws IOException {
