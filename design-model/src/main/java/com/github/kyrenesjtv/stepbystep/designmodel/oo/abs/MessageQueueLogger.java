@@ -1,4 +1,4 @@
-package com.github.kyrenesjtv.stepbystep.designmodel.oo.interabs;
+package com.github.kyrenesjtv.stepbystep.designmodel.oo.abs;
 
 import java.util.logging.Level;
 
