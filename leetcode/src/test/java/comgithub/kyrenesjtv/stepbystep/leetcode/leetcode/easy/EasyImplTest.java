@@ -26,6 +26,29 @@ import java.util.stream.Collectors;
 public class EasyImplTest {
 
     @Test
+    public void test19() {
+        String aa = "\u202D";
+        System.out.println("aaa");
+        System.out.println(aa);
+        System.out.println("bbb");
+    }
+
+    @Test
+    public void test18() {
+        String xddh = "0855—8122359".replaceAll("\r\n", "")
+                .replaceAll("\\n", "")
+                .replaceAll("\u202D", "")
+                .replaceAll("‬", "")
+                .replaceAll(" ", "")
+                .replaceAll(":", "")
+                .replaceAll(" ", "")
+                .replaceAll("　", "")
+                .replaceAll("—", "");
+        Long aLong = Long.valueOf(xddh);
+        System.out.println(aLong);
+    }
+
+    @Test
     public void test17() {
 //        String content = "777059861165617";
 //        String pattern = "^(268|888|588|688|368|468|568|668|768|868|968)[0-9]{9}$" +
