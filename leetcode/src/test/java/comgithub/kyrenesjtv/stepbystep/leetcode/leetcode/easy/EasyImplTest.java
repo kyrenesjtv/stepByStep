@@ -26,6 +26,13 @@ import java.util.stream.Collectors;
 public class EasyImplTest {
 
     @Test
+    public void test20() {
+        BigDecimal bigDecimal20 = new BigDecimal(20);
+        BigDecimal bigDecimal10 = new BigDecimal(30);
+        System.out.println(bigDecimal20.compareTo(bigDecimal10));
+    }
+
+    @Test
     public void test19() {
         String aa = "\u202D";
         System.out.println("aaa");
