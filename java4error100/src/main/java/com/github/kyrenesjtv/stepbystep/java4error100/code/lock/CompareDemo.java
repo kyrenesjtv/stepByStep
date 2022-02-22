@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author huojianxiong
- * @Description ThreadSecurity
+ * @Description ThreadSecurity 关于操作synchronized
  * @Date 2022/2/17 11:42
  */
 @Slf4j

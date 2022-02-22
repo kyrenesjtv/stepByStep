@@ -10,7 +10,7 @@ import java.util.stream.IntStream;
 
 /**
  * @author huojianxiong
- * @Description 关于多线程操作concurrentHashMap遇到的问题
+ * @Description 关于多个实例访问静态资源的方法
  * @Date 2021/12/29 14:02
  */
 @RequestMapping("/lockdemo02")
