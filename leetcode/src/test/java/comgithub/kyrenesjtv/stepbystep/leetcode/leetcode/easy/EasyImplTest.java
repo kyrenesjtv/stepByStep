@@ -26,6 +26,22 @@ import java.util.stream.Collectors;
 public class EasyImplTest {
 
     @Test
+    public void test21() {
+        String url = "http://127.0.0.1:8080/request?appId=xxx&timestamp=xxx&token=xxx";
+        String[] split = url.split("&");
+        for (int i = 0; i < split.length; i++) {
+            if (i == 0) {
+                String[] split1 = split[0].split("\\?");
+                for (String s : split1) {
+                    System.out.println(s);
+                }
+            } else {
+                System.out.println(split[i]);
+            }
+        }
+    }
+
+    @Test
     public void test20() {
         BigDecimal bigDecimal20 = new BigDecimal(20);
         BigDecimal bigDecimal10 = new BigDecimal(30);
