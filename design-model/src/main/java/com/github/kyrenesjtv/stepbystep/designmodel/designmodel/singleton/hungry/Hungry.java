@@ -1,4 +1,4 @@
-package com.github.kyrenesjtv.stepbystep.designmodel.designmodel.factory.hungry;
+package com.github.kyrenesjtv.stepbystep.designmodel.designmodel.singleton.hungry;
 
 /**
  * @author huojianxiong
