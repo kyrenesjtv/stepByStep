@@ -1,4 +1,4 @@
-package com.github.kyrenesjtv.stepbystep.designmodel.designprinciple.metrics;
+package com.github.kyrenesjtv.stepbystep.designmodel.designprinciple.metrics.demo01;
 
 import com.alibaba.fastjson.JSONObject;
 

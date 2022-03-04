@@ -1,17 +1,17 @@
-package com.github.kyrenesjtv.stepbystep.designmodel.designprinciple.metrics;
+package com.github.kyrenesjtv.stepbystep.designmodel.designprinciple.metrics.demo01;
 
 import java.util.List;
 import java.util.Map;
 
 /**
  * @author huojianxiong
- * @Description RedisMetricsStorage
- * @Date 2022/2/27 23:17
+ * @Description MysqlMetricsStorage
+ * @Date 2022/2/27 23:18
  */
-public class RedisMetricsStorage implements MetricsStorage {
+public class MysqlMetricsStorage implements MetricsStorage {
     @Override
     public void saveRequestInfo(RequestInfo requestInfo) {
-        
+
     }
 
     @Override

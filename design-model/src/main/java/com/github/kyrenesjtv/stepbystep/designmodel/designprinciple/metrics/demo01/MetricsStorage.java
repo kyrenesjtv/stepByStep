@@ -1,4 +1,4 @@
-package com.github.kyrenesjtv.stepbystep.designmodel.designprinciple.metrics;
+package com.github.kyrenesjtv.stepbystep.designmodel.designprinciple.metrics.demo01;
 
 import java.util.List;
 import java.util.Map;
@@ -24,7 +24,7 @@ public interface MetricsStorage {
      * @param apiName
      * @param startTimeInMillis
      * @param endTimeInMillis
-     * @return java.util.List<com.github.kyrenesjtv.stepbystep.designmodel.designprinciple.metrics.RequestInfo>
+     * @return java.util.List<com.github.kyrenesjtv.stepbystep.designmodel.designprinciple.metrics.demo01.RequestInfo>
      * @author huojianxiong
      * @description 根据apiName和时间返回RequestInfo
      * @data 23:15 2022/2/27
@@ -35,7 +35,7 @@ public interface MetricsStorage {
      * @param
      * @param startTimeInMillis
      * @param endTimeInMillis
-     * @return java.util.Map<java.lang.String, java.util.List < com.github.kyrenesjtv.stepbystep.designmodel.designprinciple.metrics.RequestInfo>>
+     * @return java.util.Map<java.lang.String, java.util.List < com.github.kyrenesjtv.stepbystep.designmodel.designprinciple.metrics.demo01.RequestInfo>>
      * @author huojianxiong
      * @description 根据时间返回RequestInfo
      * @data 23:16 2022/2/27
