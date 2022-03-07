@@ -9,6 +9,9 @@ public class Lazy02 {
 
     private static Lazy02 lazy01 = null;
 
+    private Lazy02() {
+    }
+
     public static synchronized Lazy02 getInstance() {
         if (lazy01 == null) {
             lazy01 = new Lazy02();

@@ -12,6 +12,9 @@ public class Staticclass {
         private static final Staticclass staticclass = new Staticclass();
     }
 
+    private Staticclass() {
+    }
+
     public static Staticclass getInstance() {
         return StaticclassHolder.staticclass;
     }
