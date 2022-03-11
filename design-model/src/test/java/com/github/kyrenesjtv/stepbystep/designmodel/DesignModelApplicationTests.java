@@ -1,5 +1,7 @@
 package com.github.kyrenesjtv.stepbystep.designmodel;
 
+import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.factory.factorymethod.IRuleConfigParserFactory;
+import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.factory.factorymethod.IRuleConfigParserFactoryMap;
 import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.factory.simplefactory.IRuleConfigParser;
 import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.factory.simplefactory.RuleConfigParserFactory;
 import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.factory.simplefactory.RuleConfigParserFactoryMap;
@@ -53,4 +55,10 @@ class DesignModelApplicationTests {
         System.out.println(123);
     }
 
+    @Test
+    void factoryMethod() {
+        IRuleConfigParserFactory ruleConfigParserFactory = IRuleConfigParserFactoryMap.createParser("json");
+        com.github.kyrenesjtv.stepbystep.designmodel.designmodel.factory.factorymethod.IRuleConfigParser parser = ruleConfigParserFactory.createParser();
+        parser.parser();
+    }
 }
