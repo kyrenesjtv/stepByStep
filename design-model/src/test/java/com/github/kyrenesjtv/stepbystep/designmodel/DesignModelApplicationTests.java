@@ -1,5 +1,7 @@
 package com.github.kyrenesjtv.stepbystep.designmodel;
 
+import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.factory.simplefactory.IRuleConfigParser;
+import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.factory.simplefactory.RuleConfigParserFactory;
 import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.singleton.enums.EnumTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -36,6 +38,13 @@ class DesignModelApplicationTests {
         int id2 = EnumTest.RED.getId();
         System.out.println(id1);
         System.out.println(id2);
+
+    }
+
+    @Test
+    void simpleFactory() {
+        IRuleConfigParser configParser = RuleConfigParserFactory.createParser("json");
+        configParser.parser();
 
     }
 
