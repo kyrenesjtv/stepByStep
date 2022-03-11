@@ -2,6 +2,7 @@ package com.github.kyrenesjtv.stepbystep.designmodel;
 
 import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.factory.simplefactory.IRuleConfigParser;
 import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.factory.simplefactory.RuleConfigParserFactory;
+import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.factory.simplefactory.RuleConfigParserFactoryMap;
 import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.singleton.enums.EnumTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -46,6 +47,10 @@ class DesignModelApplicationTests {
         IRuleConfigParser configParser = RuleConfigParserFactory.createParser("json");
         configParser.parser();
 
+//        IRuleConfigParser configParser1 = RuleConfigParserFactoryMap.createParser("xxx");
+        IRuleConfigParser configParser1 = RuleConfigParserFactoryMap.createParser("json");
+        configParser1.parser();
+        System.out.println(123);
     }
 
 }
