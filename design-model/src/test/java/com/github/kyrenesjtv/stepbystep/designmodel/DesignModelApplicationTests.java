@@ -1,5 +1,6 @@
 package com.github.kyrenesjtv.stepbystep.designmodel;
 
+import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.builder.ResourcePoolConfig;
 import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.factory.abstractfactory.IConfigParserFactory;
 import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.factory.abstractfactory.IConfigParserFactoryMap;
 import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.factory.abstractfactory.ISystemConfigParser;
@@ -72,5 +73,15 @@ class DesignModelApplicationTests {
         ISystemConfigParser systemParser = json.createSystemParser();
         ruleParser.parser();
         systemParser.parser();
+    }
+
+    @Test
+    void builderTest() {
+        ResourcePoolConfig dbconnectionpool = new ResourcePoolConfig.Builder()
+                .setName("dbconnectionpool")
+                .setMaxTotal(16)
+                .setMaxIdle(10)
+                .setMinIdle(12)
+                .build();
     }
 }
