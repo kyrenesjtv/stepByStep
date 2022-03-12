@@ -9,11 +9,13 @@ import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.factory.factorym
 import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.factory.simplefactory.IRuleConfigParser;
 import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.factory.simplefactory.RuleConfigParserFactory;
 import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.factory.simplefactory.RuleConfigParserFactoryMap;
+import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.prototype.SearchWord;
 import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.singleton.enums.EnumTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 @SpringBootTest
@@ -83,5 +85,21 @@ class DesignModelApplicationTests {
                 .setMaxIdle(10)
                 .setMinIdle(12)
                 .build();
+    }
+
+    @Test
+    void prototypeTest() {
+        HashMap<String, SearchWord> oldMap = new HashMap<>();
+        oldMap.put("11", new SearchWord("1", 1l, 1l));
+        oldMap.put("22", new SearchWord("2", 2l, 2l));
+        oldMap.put("33", new SearchWord("3", 3l, 3l));
+
+        HashMap<String, SearchWord> newMap = (HashMap<String, SearchWord>) oldMap.clone();
+        SearchWord searchWord = newMap.get("22");
+        searchWord.setKeyWord("22");
+        searchWord.setCount(22);
+        searchWord.setLastUpdateTime(22);
+        System.out.println("123");
+
     }
 }
