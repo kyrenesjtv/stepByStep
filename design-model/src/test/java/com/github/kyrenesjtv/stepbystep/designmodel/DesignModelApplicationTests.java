@@ -10,6 +10,7 @@ import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.factory.simplefa
 import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.factory.simplefactory.RuleConfigParserFactory;
 import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.factory.simplefactory.RuleConfigParserFactoryMap;
 import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.prototype.SearchWord;
+import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.proxy.DepartControllerProxy;
 import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.proxy.UserController;
 import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.proxy.UserControllerProxy;
 import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.singleton.enums.EnumTest;
@@ -113,6 +114,10 @@ class DesignModelApplicationTests {
         System.out.println("==============");
         UserControllerProxy userControllerProxy = new UserControllerProxy(userController);
         userControllerProxy.register("123", "456");
+
+
+        DepartControllerProxy departControllerProxy = new DepartControllerProxy();
+        departControllerProxy.insert("123");
 
     }
 }
