@@ -118,7 +118,7 @@ class DesignModelApplicationTests {
         departControllerProxy.insert("123");
 
         System.out.println("==============");
-        UserControllerDynamicProxy userControllerDynamicProxy = new UserControllerDynamicProxy(new MetricsCollector());
+        MetricsControllerDynamicProxy userControllerDynamicProxy = new MetricsControllerDynamicProxy(new MetricsCollector());
         IUserController userController1 = (IUserController) userControllerDynamicProxy.createProxy(new UserController());
         userController1.register("123", "456");
         userController1.login("123", "456");

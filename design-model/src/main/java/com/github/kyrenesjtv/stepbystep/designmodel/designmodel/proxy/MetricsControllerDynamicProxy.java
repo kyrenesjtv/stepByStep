@@ -9,11 +9,11 @@ import java.lang.reflect.Proxy;
  * @Description UserControllerDynamicProxy - 动态代理
  * @Date 2022/3/15 16:55
  */
-public class UserControllerDynamicProxy {
+public class MetricsControllerDynamicProxy {
 
     private MetricsCollector metricsCollector;
 
-    public UserControllerDynamicProxy(MetricsCollector metricsCollector) {
+    public MetricsControllerDynamicProxy(MetricsCollector metricsCollector) {
         this.metricsCollector = metricsCollector;
     }
 
