@@ -10,9 +10,7 @@ import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.factory.simplefa
 import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.factory.simplefactory.RuleConfigParserFactory;
 import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.factory.simplefactory.RuleConfigParserFactoryMap;
 import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.prototype.SearchWord;
-import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.proxy.DepartControllerProxy;
-import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.proxy.UserController;
-import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.proxy.UserControllerProxy;
+import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.proxy.*;
 import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.singleton.enums.EnumTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -115,9 +113,15 @@ class DesignModelApplicationTests {
         UserControllerProxy userControllerProxy = new UserControllerProxy(userController);
         userControllerProxy.register("123", "456");
 
-
+        System.out.println("==============");
         DepartControllerProxy departControllerProxy = new DepartControllerProxy();
         departControllerProxy.insert("123");
+
+        System.out.println("==============");
+        UserControllerDynamicProxy userControllerDynamicProxy = new UserControllerDynamicProxy(new MetricsCollector());
+        IUserController userController1 = (IUserController) userControllerDynamicProxy.createProxy(new UserController());
+        userController1.register("123", "456");
+        userController1.login("123", "456");
 
     }
 }
