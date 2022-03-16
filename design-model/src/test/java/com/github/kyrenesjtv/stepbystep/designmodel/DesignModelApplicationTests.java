@@ -3,6 +3,7 @@ package com.github.kyrenesjtv.stepbystep.designmodel;
 import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.bridge.EmailMsgSender;
 import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.bridge.SeverNotification;
 import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.builder.ResourcePoolConfig;
+import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.decorator.UserControllerDecorator;
 import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.factory.abstractfactory.IConfigParserFactory;
 import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.factory.abstractfactory.IConfigParserFactoryMap;
 import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.factory.abstractfactory.ISystemConfigParser;
@@ -133,6 +134,14 @@ class DesignModelApplicationTests {
         EmailMsgSender emailMsgSender = new EmailMsgSender(Arrays.asList("123"));
         SeverNotification severNotification = new SeverNotification(emailMsgSender);
         severNotification.notify("消息");
+    }
+
+    @Test
+    void decoratorTest() {
+        com.github.kyrenesjtv.stepbystep.designmodel.designmodel.decorator.UserController userController = new com.github.kyrenesjtv.stepbystep.designmodel.designmodel.decorator.UserController();
+        UserControllerDecorator userControllerDecorator = new UserControllerDecorator(userController);
+        userControllerDecorator.login("123", "456");
+        userControllerDecorator.register("123", "456");
     }
 
 
