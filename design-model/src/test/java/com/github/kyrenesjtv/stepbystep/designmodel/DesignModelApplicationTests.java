@@ -1,5 +1,7 @@
 package com.github.kyrenesjtv.stepbystep.designmodel;
 
+import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.bridge.EmailMsgSender;
+import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.bridge.SeverNotification;
 import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.builder.ResourcePoolConfig;
 import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.factory.abstractfactory.IConfigParserFactory;
 import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.factory.abstractfactory.IConfigParserFactoryMap;
@@ -124,4 +126,14 @@ class DesignModelApplicationTests {
         userController1.login("123", "456");
 
     }
+
+
+    @Test
+    void bridgeTest() {
+        EmailMsgSender emailMsgSender = new EmailMsgSender(Arrays.asList("123"));
+        SeverNotification severNotification = new SeverNotification(emailMsgSender);
+        severNotification.notify("消息");
+    }
+
+
 }
