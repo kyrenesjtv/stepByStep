@@ -1,5 +1,8 @@
 package com.github.kyrenesjtv.stepbystep.designmodel;
 
+import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.adaptor.Adaptee;
+import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.adaptor.ClassAdaptor;
+import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.adaptor.ObjAdaptor;
 import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.bridge.EmailMsgSender;
 import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.bridge.SeverNotification;
 import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.builder.ResourcePoolConfig;
@@ -144,5 +147,16 @@ class DesignModelApplicationTests {
         userControllerDecorator.register("123", "456");
     }
 
+    @Test
+    void adaptorTest() {
+        //类适配器，调用者可以调用原来的方法，也可以调用新接口（改过的业务）
+        ClassAdaptor classAdaptor = new ClassAdaptor();
+        classAdaptor.f2();
+
+        //对象适配器，，调用者可以通过被适配对象调用原来的方法，也可以调用新接口（改过的业务）
+        Adaptee adaptee = new Adaptee();
+        ObjAdaptor objAdaptor = new ObjAdaptor(adaptee);
+        objAdaptor.f2();
+    }
 
 }
