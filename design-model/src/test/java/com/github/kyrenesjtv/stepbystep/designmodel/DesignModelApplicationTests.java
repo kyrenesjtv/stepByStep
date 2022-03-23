@@ -15,10 +15,15 @@ import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.factory.factorym
 import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.factory.simplefactory.IRuleConfigParser;
 import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.factory.simplefactory.RuleConfigParserFactory;
 import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.factory.simplefactory.RuleConfigParserFactoryMap;
+import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.observer.ConcreteObserverOne;
+import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.observer.ConcreteObserverTwo;
+import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.observer.ConcreteSubject;
+import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.observer.Message;
 import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.prototype.SearchWord;
 import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.proxy.*;
 import com.github.kyrenesjtv.stepbystep.designmodel.designmodel.singleton.enums.EnumTest;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Arrays;
@@ -159,4 +164,23 @@ class DesignModelApplicationTests {
         objAdaptor.f2();
     }
 
+
+    @Autowired
+    private ConcreteObserverOne concreteObserverOne;
+    @Autowired
+    private ConcreteObserverTwo concreteObserverTwo;
+    @Autowired
+    private ConcreteSubject concreteSubject;
+
+    @Test
+    void observerTest() {
+        //此处可以用工厂+策略的形式进行注入Observer
+        concreteSubject.registerObserver(concreteObserverOne);
+        concreteSubject.registerObserver(concreteObserverTwo);
+
+        Message message = new Message();
+        message.setMsg("notify");
+        
+        concreteSubject.notifyObservers(message);
+    }
 }

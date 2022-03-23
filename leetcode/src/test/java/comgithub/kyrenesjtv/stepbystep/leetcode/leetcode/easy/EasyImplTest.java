@@ -16,6 +16,8 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
@@ -24,6 +26,52 @@ import java.util.stream.Collectors;
  * @CreateDate: 2019/7/22 17:46
  */
 public class EasyImplTest {
+
+    @Test
+    public void test24() {
+        HashMap<String, String> stringStringHashMap = new HashMap<>();
+        stringStringHashMap.put("aa", "aa");
+        stringStringHashMap.put("bb", "bb");
+        stringStringHashMap.put("cc", "cc");
+        String dd = stringStringHashMap.get("dd");
+        System.out.println(123);
+    }
+
+    @Test
+    public void test23() {
+        begin:
+        for (int i = 0; i < 10; i++) {
+            switch (i) {
+                case 1:
+                    System.out.println(i);
+                    break begin;
+                case 2:
+                    System.out.println(i);
+                    break begin;
+                case 3:
+                    System.out.println(i);
+                    break begin;
+                case 4:
+                    System.out.println(i);
+                    break begin;
+                case 5:
+                    System.out.println(i);
+                    break begin;
+                case 6:
+                    System.out.println(i);
+                    break begin;
+            }
+        }
+        System.out.println("1234");
+    }
+
+    @Test
+    public void test22() {
+        String content = "内物：dsa,,快递外包装：dsa,收件人姓名:[NK:encrypt,text=\\\\u5c0f\\\\u002a,value=5bCP6JaH],收件人电话：[NK:encrypt,text=\\\\u0031\\\\u0035\\\\u002a\\\\u002a\\\\u002a\\\\u002a\\\\u002a\\\\u002a\\\\u002a\\\\u0035\\\\u0037,value=MTU4MjQxMzc0NTc=],地址：安徽省-六安市-金寨县-dsa,新收件人姓名：[NK:encrypt,text=\\\\u0064\\\\u002a,value=ZHM=],新收件人电话：[NK:encrypt,text=\\\\u0031\\\\u0035\\\\u002a\\\\u002a\\\\u002a\\\\u002a\\\\u002a\\\\u002a\\\\u002a\\\\u0035\\\\u0037,value=MTU4MjQxMzc0NTc=],新地址：浙江省-温州市-泰顺县-dsa。";
+        String[] split = content.split(",");
+        System.out.println(123);
+    }
+
 
     @Test
     public void test21() {
@@ -73,21 +121,12 @@ public class EasyImplTest {
 
     @Test
     public void test17() {
-//        String content = "777059861165617";
-//        String pattern = "^(268|888|588|688|368|468|568|668|768|868|968)[0-9]{9}$" +
-//                "|^(11|22|40|268|888|588|688|368|468|568|668|768|868|968)[0-9]{10}$" +
-//                "|^(STO)[0-9]{10}$" +
-//                "|^(33)[0-9]{11}$" +
-//                "|^(4)[0-9]{12}$" +
-//                "|^(55)[0-9]{11}$" +
-//                "|^(66)[0-9]{11}$" +
-//                "|^(77)[0-9]{11}$" +
-//                "|^(88)[0-9]{11}$" +
-//                "|^(99)[0-9]{11}$";
-//
-//        Pattern r = Pattern.compile(pattern);
-//        Matcher m = r.matcher(content);
-//        System.out.println(m.matches());
+        String content = "3311111111199991111111";
+        String pattern = "^[2-9][\\d]{12,17}$";
+
+        Pattern r = Pattern.compile(pattern);
+        Matcher m = r.matcher(content);
+        System.out.println(m.matches());
 
 
 //        String content = "75845270272214";
