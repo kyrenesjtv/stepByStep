@@ -1,4 +1,4 @@
-package com.github.kyrenesjtv.stepbystep.designmodel.designmodel.template;
+package com.github.kyrenesjtv.stepbystep.designmodel.designmodel.template.demo2;
 
 /**
  * @author huojianxiong

@@ -8,9 +8,9 @@ package com.github.kyrenesjtv.stepbystep.designmodel.designmodel.template.callba
 public class BClass {
 
     public void process(ICallback callback) {
-        System.out.println("before");
+        System.out.println("BClass-before");
         callback.methodToCallback();
-        System.out.println("after");
+        System.out.println("BClass-after");
     }
 
 }
