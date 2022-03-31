@@ -29,12 +29,17 @@ public class EasyImplTest {
 
     @Test
     public void test24() {
-        HashMap<String, String> stringStringHashMap = new HashMap<>();
-        stringStringHashMap.put("aa", "aa");
-        stringStringHashMap.put("bb", "bb");
-        stringStringHashMap.put("cc", "cc");
-        String dd = stringStringHashMap.get("dd");
-        System.out.println(123);
+        HashSet<String> strings = new HashSet<>();
+        strings.add("123");
+        strings.add("error");
+        strings.remove("error");
+        String aa = null;
+        if (strings.size() == 1) {
+            aa = new ArrayList<>(strings).get(0);
+            System.out.println(aa);
+        } else {
+            System.out.println("kong");
+        }
     }
 
     @Test
