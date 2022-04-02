@@ -10,11 +10,11 @@ import lombok.Getter;
 @Getter
 public enum State {
 
-    SMALL(0),
-    SUPER(1),
-    FIRE(2),
-    CAPE(3);
-    
+    SMALL(0),//普通
+    SUPER(1),//吃了变大的蘑菇
+    FIRE(2),//获得火焰
+    CAPE(3);//获得斗篷
+
     private int value;
 
     private State(int value) {
