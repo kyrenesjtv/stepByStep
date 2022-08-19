@@ -28,6 +28,7 @@ public class CompletetableFuture01 {
             System.out.println("T2:拿茶叶...");
             sleep(1, TimeUnit.SECONDS);
             sleep(1, TimeUnit.SECONDS);
+            sleep(2, TimeUnit.SECONDS);
             return "龙井";
         });
 
