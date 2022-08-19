@@ -29,6 +29,7 @@ public class CompletetableFuture01 {
             sleep(1, TimeUnit.SECONDS);
             sleep(1, TimeUnit.SECONDS);
             sleep(2, TimeUnit.SECONDS);
+            sleep(3, TimeUnit.SECONDS);
             return "龙井";
         });
 
