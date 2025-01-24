@@ -21,7 +21,7 @@ public class CompletetableFuture01 {
         });
 
         CompletableFuture f2 = CompletableFuture.supplyAsync(() -> {
-            System.out.println("T2:洗茶壶...");
+            System.out.println("T2:洗茶壶...1");
             sleep(1, TimeUnit.SECONDS);
             System.out.println("T2:洗茶杯...");
             sleep(2, TimeUnit.SECONDS);
