@@ -26,7 +26,7 @@ public class MulRowExport {
         try {
             boolean createExcelFile = createExcelFile();
             if (createExcelFile) {
-                System.out.println("SXSSF_excel导出成功");
+                System.out.println("SXSSF_excel导出成功1");
             } else {
                 System.out.println("SXSSFexcel导出失败");
             }
